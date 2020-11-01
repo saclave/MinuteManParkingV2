@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import MPHeader from './MPHeader';
 import HomePageAboutUs from './HomePageAboutUs';
-import HomePageLogin from './HomePageLogin';
+import HomePageLoginContainer from '../containers/HomePageLoginContainer';
 import HomePageMap from './HomePageMap';
 import HomePageSider from './HomePageSider';
 import HomePageServices from './HomePageServices';
@@ -32,7 +32,7 @@ class HomePage extends Component {
                             <HomePageAboutUs />
                         </Content>
                     </Layout>
-                    <HomePageLogin />
+                    <HomePageLoginContainer />
                 </Layout>
             </Layout>
         );

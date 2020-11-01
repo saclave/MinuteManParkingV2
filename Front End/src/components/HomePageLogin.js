@@ -10,11 +10,32 @@ const { Sider } = Layout;
 const { Title } = Typography;
 
 class HomePageLogin extends Component {
-    render() {
-        const onFinish = values => {
-            console.log('Received values of form: ', values);
-        };
+    formRef = React.createRef();
 
+    onFinish = values => {
+        const account = this.getAccountByUsernameAndPassword(values.username, values.password);
+        if (this.isObjectEmpty(account)) {
+            console.log('Log in failed!');
+
+            return;
+        }
+
+        console.log(account);
+        this.props.authenticate(account);
+        console.log('Logged in successfully!');
+    };
+
+    getAccountByUsernameAndPassword = (username, password) => {
+        return this.props.accounts.find(account =>
+            account.username === username &&
+            account.password === password);
+    }
+
+    isObjectEmpty(object) {
+        return Object.keys(object).length === 0;
+    }
+
+    render() {
         return (
             <Affix offsetTop={20}>
                 <Sider width={300} className="site-layout-background">
@@ -26,14 +47,14 @@ class HomePageLogin extends Component {
                             initialValues={{
                                 remember: true,
                             }}
-                            onFinish={onFinish}
+                            onFinish={this.onFinish}
                         >
                             <Form.Item
                                 name="username"
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please input your Username!',
+                                        message: 'Please input your username!',
                                     },
                                 ]}
                             >
@@ -44,7 +65,7 @@ class HomePageLogin extends Component {
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please input your Password!',
+                                        message: 'Please input your password!',
                                     },
                                 ]}
                             >
