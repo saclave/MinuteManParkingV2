@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Form, Input, Button,DatePicker, Select } from 'antd';
-     
-class createPage extends Component {
+import { v4 as uuidv4 } from 'uuid';
+
+class CreatePage extends Component {
+  constructor(props) { 
+    super(props);
+}
     render() {
         const layout = {
             labelCol: { span: 8 },
@@ -16,52 +20,57 @@ class createPage extends Component {
               email: '${label} is not validate email!',
             },
           };
-            const onFinish = values => {
-              console.log(values);
-              this.props.addUser(values);
-            };
-            const { Option } = Select;  
+          const onFinish = values => {   
+            const id = uuidv4();
+            const account = {id: id, firstName: values.firstName, lastName: values.lastName, 
+                userName: values.username, passWord: values.password, email: values.email, gender: values.gender, birthday: values.birthday};
 
+            this.props.addUser(account);
+            console.log(id);
+            console.log(values);
+        };
+
+            const { Option } = Select;  
         return (
             <div>
                 <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
-                  <Form.Item name={['user', 'firstName']} label="First Name" rules={[{ required: true }]} >
-                    <Input />
-                  </Form.Item>
-                  <Form.Item name={['user', 'lastName']} label="Last Name" rules={[{ required: true }]}>
-                    <Input />
-                  </Form.Item>
-                  <Form.Item name={['user', 'username']} label="Username" rules={[{ required: true }]}>
-                    <Input />
-                  </Form.Item>
-                  <Form.Item name={['user', 'password']} label="Password" rules={[{ required: true }]}>
-                    <Input.Password />
-                  </Form.Item>
-                  <Form.Item name={['user', 'email']} label="Email" rules={[{ type: 'email' }]}>
-                    <Input />
-                  </Form.Item>
-                  <Form.Item name={['user', 'gender']} label="Gender" rules={[{ required: true }]}>
-                   <Select
-                     placeholder="Select a option and change input text above"
-                     allowClear
-                   >
-                     <Option value="male">male</Option>
-                     <Option value="female">female</Option>
-                     <Option value="other">other</Option>
-                   </Select>
-                 </Form.Item>
-                  <Form.Item name={['user', 'date-picker']} label="Birthdate" {...config}>
-                    <DatePicker />
-                  </Form.Item>
-                  <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-                    <Button type="primary" htmlType="submit">
-                      Submit
+                    <Form.Item name="firstName" label="First Name" rules={[{ required: true }]} >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item name="lastName" label="Last Name" rules={[{ required: true }]}>
+                        <Input />
+                    </Form.Item>
+                    <Form.Item name="username" label="Username" rules={[{ required: true }]}>
+                        <Input />
+                    </Form.Item>
+                    <Form.Item name="password" label="Password" rules={[{ required: true }]}>
+                        <Input.Password />
+                    </Form.Item>
+                    <Form.Item name="email" label="Email" rules={[{ type: 'email' }]}>
+                        <Input />
+                    </Form.Item>
+                    <Form.Item name="gender" label="Gender" rules={[{ required: true }]}>
+                        <Select
+                            placeholder="Select a option and change input text above"
+                            allowClear
+                        >
+                            <Option value="male">male</Option>
+                            <Option value="female">female</Option>
+                            <Option value="other">other</Option>
+                        </Select>
+                    </Form.Item>
+                    <Form.Item name="birthDate" label="Birthdate" {...config}>
+                        <DatePicker />
+                    </Form.Item>
+                    <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
+                        <Button type="primary" htmlType="submit">
+                            Submit
                     </Button>
-                  </Form.Item>
+                    </Form.Item>
                 </Form>
             </div>
         );
     }
 }
 
-export default createPage;
+export default CreatePage;

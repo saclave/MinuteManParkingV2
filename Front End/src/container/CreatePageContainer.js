@@ -3,7 +3,7 @@ import CreatePage from "../components/CreatePage";
 import {addUser} from "../actions";
 
 const mapDispatchToProps = (dispatch) =>({
-    addUser: (todo) => {dispatch(addUser(todo))}
+    addUser: (accounts) => {dispatch(addUser(accounts))}
 })
 
 const CreatePageContainer = connect(null, mapDispatchToProps) (CreatePage)
