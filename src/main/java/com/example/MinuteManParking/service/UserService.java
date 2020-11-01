@@ -1,11 +1,13 @@
 package com.example.MinuteManParking.service;
 
+import com.example.MinuteManParking.exceptions.UsernameAlreadyExisting;
 import com.example.MinuteManParking.model.User;
 import com.example.MinuteManParking.repository.UserRepository;
 import com.example.MinuteManParking.exceptions.UserNotFound;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import static com.example.MinuteManParking.exceptions.UserNotFound.USER_NOT_FOUND;
+import static com.example.MinuteManParking.exceptions.UsernameAlreadyExisting.USERNAME_ALREADY_EXISTING;
 
 @Service
 public class UserService {
@@ -16,7 +18,10 @@ public class UserService {
     }
 
     public User create(User user) {
-        return userRepository.save(user);
+        if(userRepository.findByUsername(user.getUsername()) == null){
+            return userRepository.save(user);
+        }
+        throw new UsernameAlreadyExisting(USERNAME_ALREADY_EXISTING);
     }
 
     public List<User> getAll() {
@@ -56,5 +61,12 @@ public class UserService {
             retrievedUser.setPassword(user.getPassword());
         }
         return userRepository.save(retrievedUser);
+    }
+
+    public User findByUsernamePassword(String username, String password) {
+        return userRepository.findByPassword(password).stream()
+                .filter(user -> user.getId().equals(userRepository.findByUsername(username).getId()))
+                .findFirst()
+                .orElseThrow(() -> new UserNotFound(USER_NOT_FOUND));
     }
 }

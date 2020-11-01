@@ -51,4 +51,10 @@ public class UserController {
         User user = userService.update(id, userMapper.toEntity(userRequest));
         return userMapper.toResponse(user);
     }
+
+    @GetMapping(params = {"username", "password"})
+    public UserResponse getByUsernamePassword(@RequestParam("username") String username, @RequestParam("password") String password) {
+        User user = userService.findByUsernamePassword(username, password);
+        return userMapper.toResponse(user);
+    }
 }

@@ -5,6 +5,7 @@ import com.example.MinuteManParking.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,4 +81,20 @@ public class UserServiceTest {
         //then
         assertSame(expected,updated);
     }
+
+//    @Test
+//    void should_return_user_when_get_by_username_and_password() {
+//        //given
+//        User user = new User("old", "old", "old", "old", "old", "old","old");
+//        List<User> users = new ArrayList<>();
+//        users.add(user);
+//
+//        when(userRepository.findByPassword(user.getPassword())).thenReturn(users);
+//        when(userRepository.findByUsername(user.getUsername())).thenReturn(user);
+//
+//        //when
+//        User updated = userService.findByUsernamePassword(user.getUsername(), user.getPassword());
+//        //then
+//        assertSame(user,updated);
+//    }
 }
