@@ -1,9 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
-import Login from './components/Login';
 import HomePage from './components/HomePage';
 import { BrowserRouter, Route,Switch } from 'react-router-dom';
 import MapPage from './components/MapPage';
+import UpdateUserProfileContainer from './container/UpdateUserProfileContainer';
+import CreateUserContainer from './container/CreateUserContainer';
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
 
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/create" component={CreateUserContainer} />
+          <Route exact path="/update" component={UpdateUserProfileContainer} />
+
         </Switch>
 
       </header>
