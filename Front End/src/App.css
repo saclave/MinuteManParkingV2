@@ -66,3 +66,9 @@
 .header {
   margin-bottom: 20px;
 }
+
+.home-page-content-title {
+  color: black;
+  pointer-events: none;
+  cursor: default;
+}
