@@ -28,6 +28,12 @@
 .App-link {
   color: #61dafb;
 }
+.name{
+  align-items: right;
+  padding-right: left;
+  width: 100px;
+  
+}
 
 @keyframes App-logo-spin {
   from {

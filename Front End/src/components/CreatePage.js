@@ -1,0 +1,73 @@
+import React, { Component } from 'react';
+import { Form, Input, InputNumber, Button,DatePicker, Select } from 'antd';
+ const layout = {
+        labelCol: { span: 8 },
+        wrapperCol: { span: 16 },
+        
+      };
+      const config = {
+        rules: [{ type: 'object', required: true, message: 'Please select time!' }],
+      };
+      const validateMessages = {
+        required: '${label} is required!',
+        types: {
+          email: '${label} is not validate email!',
+          number: '${label} is not a validate number!',
+        },
+        number: {
+          range: '${label} must be between ${min} and ${max}',
+        },
+      };
+  
+        const onFinish = values => {
+          console.log(values);
+        };
+        const { Option } = Select;    
+      
+class createPage extends Component {
+   
+    
+    render() {
+        return (
+            <div>
+                <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
+                  <Form.Item name={['user', 'firstName']} label="First Name" rules={[{ required: true }]} >
+                    <Input />
+                  </Form.Item>
+                  <Form.Item name={['user', 'lastName']} label="Last Name" rules={[{ required: true }]}>
+                    <Input />
+                  </Form.Item>
+                  <Form.Item name={['user', 'username']} label="username" rules={[{ required: true }]}>
+                    <Input />
+                  </Form.Item>
+                  <Form.Item name={['user', 'password']} label="password" rules={[{ required: true }]}>
+                    <Input.Password />
+                  </Form.Item>
+                  <Form.Item name={['user', 'email']} label="Email" rules={[{ type: 'email' }]}>
+                    <Input />
+                  </Form.Item>
+                  <Form.Item name="gender" label="Gender" rules={[{ required: true }]}>
+                   <Select
+                     placeholder="Select a option and change input text above"
+                     allowClear
+                   >
+                     <Option value="male">male</Option>
+                     <Option value="female">female</Option>
+                     <Option value="other">other</Option>
+                   </Select>
+                 </Form.Item>
+                  <Form.Item name="date-picker" label="Birthdate" {...config}>
+                    <DatePicker />
+                  </Form.Item>
+                  <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
+                    <Button type="primary" htmlType="submit">
+                      Submit
+                    </Button>
+                  </Form.Item>
+                </Form>
+            </div>
+        );
+    }
+}
+
+export default createPage;
