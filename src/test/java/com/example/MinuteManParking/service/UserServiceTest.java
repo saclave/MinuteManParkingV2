@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -19,6 +20,17 @@ public class UserServiceTest {
     void setUp() {
         userRepository = mock(UserRepository.class);
         userService = new UserService(userRepository);
+    }
+
+    @Test
+    void should_return_all_when_getAll() {
+        //given
+        List<User> expected = asList(new User(), new User());
+        //when
+        when(userRepository.findAll()).thenReturn(expected);
+        List<User> actual = userService.getAll();
+        //then
+        assertEquals(expected, actual);
     }
 
     @Test
