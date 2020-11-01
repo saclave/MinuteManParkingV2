@@ -12,7 +12,8 @@ class ViewPage extends Component {
             lastName:'Adanza',
             age: '22',
             email: 'adanzra@oocl.com',
-            birthday: '5/21/1998'
+            birthday: '5/21/1998',
+            ticket: '#13CFD3'
 
         }    
     }
@@ -25,7 +26,7 @@ class ViewPage extends Component {
                       className="viewCard"
                       style={{ width: 250 }}
                       cover={
-                        <QRCode value="awdawdawd" size='300'/>
+                        <QRCode value={this.state.ticket} size='1000'/>
                       }
                       actions={[
                         <SettingOutlined key="setting" style={{color: "blue"}}/>,
