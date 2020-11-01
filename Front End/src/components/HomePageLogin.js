@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 import { Affix, Form, Input, Layout, Button, Typography } from 'antd';
 
@@ -15,14 +15,10 @@ class HomePageLogin extends Component {
     onFinish = values => {
         const account = this.getAccountByUsernameAndPassword(values.username, values.password);
         if (this.isObjectEmpty(account)) {
-            console.log('Log in failed!');
-
             return;
         }
 
-        console.log(account);
         this.props.authenticate(account);
-        console.log('Logged in successfully!');
     };
 
     getAccountByUsernameAndPassword = (username, password) => {
