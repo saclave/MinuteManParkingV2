@@ -27,4 +27,9 @@ public class UserService {
         return userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFound(USER_NOT_FOUND));
     }
+
+    public void delete(Integer id) {
+        userRepository.deleteById(id);
+    }
+
 }

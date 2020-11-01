@@ -9,8 +9,8 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
 
 public class UserServiceTest {
     private UserRepository userRepository;
@@ -52,5 +52,15 @@ public class UserServiceTest {
         when(userRepository.save(user)).thenReturn(user);
         //then
         assertEquals(userService.create(user),user);
+    }
+
+    @Test
+    void should_remove_todo_when_delete_by_id() {
+        //given
+        User user = new User();
+        //when
+        userService.delete(user.getId());
+        //then
+        verify(userRepository, times(1)).deleteById(user.getId());
     }
 }
