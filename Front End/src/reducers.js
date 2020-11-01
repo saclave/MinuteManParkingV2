@@ -2,6 +2,8 @@ import { combineReducers } from "redux";
 
 const accounts = (state = [], action) => {
     switch (action.type) {
+        case "ADD_ACCOUNT":
+            return [...state, action.payload];
         case "GET_ACCOUNT":
             return action.payload;
         default:
