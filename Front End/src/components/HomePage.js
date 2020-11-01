@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 
 import MPHeader from './MPHeader';
+import HomePageAbout from './HomePageAbout';
+import HomePageMap from './HomePageMap';
 import HomePageSider from './HomePageSider';
+import HomePageServices from './HomePageServices';
 
 import { Layout } from 'antd';
 
@@ -24,7 +27,9 @@ class HomePage extends Component {
                                 minHeight: 280,
                             }}
                         >
-                            Content
+                            <HomePageServices />
+                            <HomePageMap />
+                            <HomePageAbout />
                         </Content>
                     </Layout>
                 </Layout>

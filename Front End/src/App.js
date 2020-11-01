@@ -1,9 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
-import Login from './components/Login';
 import HomePage from './components/HomePage';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import MapPage from './components/MapPage';
 
 function App() {
   return (
