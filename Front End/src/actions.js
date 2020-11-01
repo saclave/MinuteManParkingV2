@@ -1,5 +1,5 @@
 export const addUser = (parking) => {
-    return {type: "ADD_USER", payload: parking}
+    return {type: "ADD_ACCOUNT", payload: parking}
 }
 
 export const getAccount = accounts => {
