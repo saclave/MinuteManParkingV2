@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Link, Redirect } from 'react-router-dom'
 
-import { Affix, Form, Input, Layout, Button, Typography } from 'antd';
+import { Affix, Form, Input, Layout, Button, Typography, notification } from 'antd';
 
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
@@ -14,21 +14,28 @@ class HomePageLogin extends Component {
 
     onFinish = values => {
         const account = this.getAccountByUsernameAndPassword(values.username, values.password);
-        if (this.isObjectEmpty(account)) {
+        if (account === undefined) {
+            this.formRef.current.resetFields();
+            notification.open({
+                message: 'Login Failed',
+                description: 'Your username or password is incorrect. Please try again.',
+            });
+
             return;
         }
 
         this.props.authenticate(account);
+
+        notification.open({
+            message: 'Login Successful',
+            description: `Hi ${account.firstName}! Where are we gonna park your car today?`,
+        });
     };
 
     getAccountByUsernameAndPassword = (username, password) => {
         return this.props.accounts.find(account =>
             account.username === username &&
             account.password === password);
-    }
-
-    isObjectEmpty(object) {
-        return Object.keys(object).length === 0;
     }
 
     render() {
@@ -44,6 +51,7 @@ class HomePageLogin extends Component {
                                 remember: true,
                             }}
                             onFinish={this.onFinish}
+                            ref={this.formRef}
                         >
                             <Form.Item
                                 name="username"
