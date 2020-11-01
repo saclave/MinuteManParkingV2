@@ -21,7 +21,7 @@ class createPage extends Component {
               this.props.addUser(values);
             };
             const { Option } = Select;  
-              
+
         return (
             <div>
                 <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
@@ -31,10 +31,10 @@ class createPage extends Component {
                   <Form.Item name={['user', 'lastName']} label="Last Name" rules={[{ required: true }]}>
                     <Input />
                   </Form.Item>
-                  <Form.Item name={['user', 'username']} label="username" rules={[{ required: true }]}>
+                  <Form.Item name={['user', 'username']} label="Username" rules={[{ required: true }]}>
                     <Input />
                   </Form.Item>
-                  <Form.Item name={['user', 'password']} label="password" rules={[{ required: true }]}>
+                  <Form.Item name={['user', 'password']} label="Password" rules={[{ required: true }]}>
                     <Input.Password />
                   </Form.Item>
                   <Form.Item name={['user', 'email']} label="Email" rules={[{ type: 'email' }]}>
