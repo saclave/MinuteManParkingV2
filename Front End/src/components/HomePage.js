@@ -19,7 +19,6 @@ class HomePage extends Component {
                 <Layout>
                     <HomePageSider />
                     <Layout style={{ padding: '0 24px 24px' }}>
-                        <br />
                         <Content
                             className="site-layout-background"
                             style={{
