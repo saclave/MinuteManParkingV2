@@ -46,6 +46,10 @@
   background: rgba(255, 255, 255, 0.3);
 }
 
+.ant-layout-header {
+  background: #1890ff;
+}
+
 .ant-row-rtl #components-layout-demo-top-side .logo {
   float: right;
   margin: 16px 0 16px 24px;
@@ -67,7 +71,7 @@
   margin-bottom: 20px;
 }
 
-.home-page-content-title {
+.ant-typography .home-page-content-title {
   color: black;
   pointer-events: none;
   cursor: default;
