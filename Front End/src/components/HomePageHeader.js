@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 
-import { Layout, Menu } from 'antd';
+import { Layout } from 'antd';
 
 const { Header } = Layout;
 
-class MPHeader extends Component {
+class HomePageHeader extends Component {
     render() {
         return (
             <Header className="header">
                 <div className="logo" />
-                <Menu theme="dark" mode="horizontal">
-                </Menu>
             </Header>
         );
     }
 }
 
-export default MPHeader;
+export default HomePageHeader;

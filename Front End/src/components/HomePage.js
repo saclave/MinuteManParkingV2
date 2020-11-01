@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
-import MPHeader from './MPHeader';
 import HomePageAboutUs from './HomePageAboutUs';
+import HomePageHeader from './HomePageHeader';
+import HomePageLogin from './HomePageLogin';
 import HomePageMap from './HomePageMap';
 import HomePageSider from './HomePageSider';
 import HomePageServices from './HomePageServices';
@@ -14,7 +15,7 @@ class HomePage extends Component {
     render() {
         return (
             <Layout>
-                <MPHeader />
+                <HomePageHeader />
                 <Layout>
                     <HomePageSider />
                     <Layout style={{ padding: '0 24px 24px' }}>
@@ -32,6 +33,7 @@ class HomePage extends Component {
                             <HomePageAboutUs />
                         </Content>
                     </Layout>
+                    <HomePageLogin />
                 </Layout>
             </Layout>
         );
