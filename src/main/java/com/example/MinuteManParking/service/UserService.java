@@ -12,7 +12,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User create(User todoItem) {
-        return userRepository.save(todoItem);
+    public User create(User user) {
+        return userRepository.save(user);
     }
 }
