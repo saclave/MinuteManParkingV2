@@ -40,7 +40,7 @@ public class TransactionService {
         return transactionRepository.findByUserId(userId);
     }
 
-    public TransactionResponse getTransactionByTicket(Integer ticketId) {
+    public Transaction getTransactionByTicket(Integer ticketId) {
         if(ticketId == null){
             throw new TransactionNotFoundException(TICKET_NOT_FOUND);
         }

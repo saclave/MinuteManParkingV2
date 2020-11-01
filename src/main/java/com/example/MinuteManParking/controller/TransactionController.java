@@ -45,7 +45,7 @@ public class TransactionController {
     }
 
     @GetMapping(params = "{ticket_id}")
-    public TransactionResponse getTransactionByTicket(Integer ticketId) {
+    public Transaction getTransactionByTicket(Integer ticketId) {
         return transactionService.getTransactionByTicket(ticketId);
     }
 
