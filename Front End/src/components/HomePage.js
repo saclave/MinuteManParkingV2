@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import MPHeader from './MPHeader';
-import HomePageAbout from './HomePageAbout';
+import HomePageAboutUs from './HomePageAboutUs';
 import HomePageMap from './HomePageMap';
 import HomePageSider from './HomePageSider';
 import HomePageServices from './HomePageServices';
@@ -29,7 +29,7 @@ class HomePage extends Component {
                         >
                             <HomePageServices />
                             <HomePageMap />
-                            <HomePageAbout />
+                            <HomePageAboutUs />
                         </Content>
                     </Layout>
                 </Layout>

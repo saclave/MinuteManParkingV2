@@ -6,7 +6,7 @@ import HomePageContentTitle from './HomePageContentTitle';
 
 import parking from '../images/parking.jpg';
 
-class HomePageAbout extends Component {
+class HomePageAboutUs extends Component {
     render() {
         return (
             <div className="home-page-content">
@@ -17,4 +17,4 @@ class HomePageAbout extends Component {
     }
 }
 
-export default HomePageAbout;
+export default HomePageAboutUs;
