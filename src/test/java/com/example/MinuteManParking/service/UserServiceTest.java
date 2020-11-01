@@ -34,6 +34,17 @@ public class UserServiceTest {
     }
 
     @Test
+    void should_return_correct_user_when_get_by_id() {
+        //given
+        User expected = new User();
+        //when
+        when(userRepository.findById(expected.getId())).thenReturn(java.util.Optional.of(expected));
+        User actual = userService.retrieve(expected.getId());
+        //then
+        assertEquals(expected, actual);
+    }
+
+    @Test
     void should_return_user_when_create_given_user() {
         //given
         User user = new User();

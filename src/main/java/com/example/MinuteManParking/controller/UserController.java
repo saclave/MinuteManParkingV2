@@ -34,5 +34,9 @@ public class UserController {
         return userMapper.toResponse(user);
     }
 
-
+    @GetMapping("/{id}")
+    public UserResponse getById(@PathVariable Integer id) {
+        User user = userService.retrieve(id);
+        return userMapper.toResponse(user);
+    }
 }
