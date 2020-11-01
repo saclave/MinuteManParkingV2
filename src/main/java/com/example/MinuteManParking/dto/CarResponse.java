@@ -1,22 +1,15 @@
-package com.example.MinuteManParking.model;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+package com.example.MinuteManParking.dto;
 
-@Entity
-public class Car {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CarResponse {
     Integer carId;
     Integer userId;
     String plateNumber;
     String color;
     String brand;
 
-    public Car() { }
+    public CarResponse() { }
 
-    public Car(String plateNumber, String color, String brand) {
+    public CarResponse(String plateNumber, String color, String brand) {
         this.plateNumber = plateNumber;
         this.color = color;
         this.brand = brand;
