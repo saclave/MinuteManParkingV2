@@ -29,7 +29,7 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public UserResponse addUser(@RequestBody UserRequest userRequest) {
+    public UserResponse add(@RequestBody UserRequest userRequest) {
         User user = userService.create(userMapper.toEntity(userRequest));
         return userMapper.toResponse(user);
     }
@@ -43,5 +43,12 @@ public class UserController {
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Integer id) {
         userService.delete(id);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserResponse updateById(@PathVariable Integer id, @RequestBody UserRequest userRequest) {
+        User user = userService.update(id, userMapper.toEntity(userRequest));
+        return userMapper.toResponse(user);
     }
 }

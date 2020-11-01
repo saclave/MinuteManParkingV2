@@ -6,9 +6,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.Arrays.asList;
+import static java.util.Optional.of;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
 
@@ -62,5 +65,19 @@ public class UserServiceTest {
         userService.delete(user.getId());
         //then
         verify(userRepository, times(1)).deleteById(user.getId());
+    }
+
+    @Test
+    void should_return_updated_task_when_update_given_update_details() {
+        //given
+        User old = new User("old", "old", "old", "old", "old", "old","old");
+        User expected = new User("expected","expected","expected","expected","expected","expected","expected");
+
+        when(userRepository.findById(old.getId())).thenReturn(Optional.of(old));
+        when(userRepository.save(old)).thenReturn(expected);
+        //when
+        User updated = userService.update(old.getId(), old);
+        //then
+        assertSame(expected,updated);
     }
 }
