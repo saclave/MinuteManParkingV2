@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { Link } from 'react-router-dom'
+
 import { Affix, Form, Input, Layout, Button, Typography } from 'antd';
 
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
@@ -56,7 +58,7 @@ class HomePageLogin extends Component {
                                 <Button type="primary" htmlType="submit" block>
                                     Log in
                                 </Button>
-                                or create an account <a href="">here</a>
+                                or create an account <Link to="/create">here</Link>
                             </Form.Item>
                         </Form>
                     </div>
