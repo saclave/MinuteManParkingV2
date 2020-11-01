@@ -28,6 +28,9 @@
 .App-link {
   color: #61dafb;
 }
+.viewCard{
+  border-color: #407294;
+}
 
 @keyframes App-logo-spin {
   from {
