@@ -5,12 +5,14 @@ class createPage extends Component {
     render() {
         const layout = {
             labelCol: { span: 8 },
-            wrapperCol: { span: 16 },
+            wrapperCol: { span: 9 },
             
           };
+
           const config = {
             rules: [{ type: 'object', required: true, message: 'Please select time!' }],
           };
+
           const validateMessages = {
             required: '${label} is required!',
             types: {
@@ -21,10 +23,12 @@ class createPage extends Component {
               range: '${label} must be between ${min} and ${max}',
             },
           };
+
             const onFinish = values => {
               console.log(values);
             };
-            const { Option } = Select;    
+            const { Option } = Select;  
+              
         return (
             <div>
                 <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
