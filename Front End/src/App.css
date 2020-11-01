@@ -80,3 +80,9 @@
 .ant-card {
   margin: 10px;
 }
+
+.home-page-about-us-content {
+  margin: 0 auto;
+  width: 600px;
+  text-align: justify;
+}
