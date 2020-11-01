@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 
 import { Image } from 'antd';
-import { Typography } from 'antd';
+
+import HomePageContentTitle from './HomePageContentTitle';
 
 import parking from '../images/parking.jpg';
-
-const { Title } = Typography;
 
 class HomePageAbout extends Component {
     render() {
         return (
             <div className="home-page-content">
-                <Title>About Us</Title>
+                <HomePageContentTitle id="about_us" text="About Us" />
                 <Image width={1000} src={parking} />
-            </div>
+            </div >
         );
     }
 }

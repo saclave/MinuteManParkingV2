@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 
-import { Typography } from 'antd';
-
-const { Title } = Typography;
+import HomePageContentTitle from './HomePageContentTitle';
 
 class HomePageServices extends Component {
     render() {
         return (
             <div className="home-page-content">
-                <Title>Services</Title>
+                <HomePageContentTitle id="services" text="Services" />
             </div>
         );
     }

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 
+import HomePageContentTitle from './HomePageContentTitle';
+
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow, } from "react-google-maps";
-
-import { Typography } from 'antd';
-
-const { Title } = Typography;
 
 class HomePageMap extends Component {
     render() {
@@ -29,7 +27,7 @@ class HomePageMap extends Component {
 
         return (
             <div className="home-page-content">
-                <Title>Map</Title>
+                <HomePageContentTitle id="map" text="Map" />
                 <MapWithAMarker
                     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfcBAIc0tdsDnV-UZqPxC1nyYBupfpPHE&v=3.exp&libraries=geometry,drawing,places"
                     loadingElement={<div style={{ height: `100%` }} />}
