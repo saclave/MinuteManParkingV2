@@ -15,7 +15,7 @@ class HomePageLogin extends Component {
 
         return (
             <Affix offsetTop={20}>
-                <Sider className="site-layout-background">
+                <Sider width={300} className="site-layout-background">
                     <div className="home-page-login">
                         <Title>Log In</Title>
                         <Form
@@ -56,10 +56,7 @@ class HomePageLogin extends Component {
                                 <Button type="primary" htmlType="submit" block>
                                     Log in
                                 </Button>
-                                or create an account
-                                <a style={{ float: 'right' }} href="">
-                                    here
-                                </a>
+                                or create an account <a href="">here</a>
                             </Form.Item>
                         </Form>
                     </div>
