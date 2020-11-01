@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import qrCode from '../images/qrcode.png';
 import { Card} from 'antd';
 import { EditOutlined, SettingOutlined } from '@ant-design/icons';
+import QRCode from 'qrcode.react';
 
 class ViewPage extends Component {
     constructor(props) {
         super(props);
         this.state={
-            name:'Red',
+            firstName:'Red',
+            lastName:'Adanza',
             age: '22',
             email: 'adanzra@oocl.com',
             birthday: '5/21/1998'
@@ -18,22 +20,19 @@ class ViewPage extends Component {
         const { Meta } = Card;
         return (
             <div>
+                
                 <Card
                       className="viewCard"
                       style={{ width: 250 }}
                       cover={
-                        <img
-                          alt="example"
-                          src={qrCode}
-                          style={{ border: '2px solid #407294'}}
-                        />
+                        <QRCode value="awdawdawd" size='300'/>
                       }
                       actions={[
                         <SettingOutlined key="setting" style={{color: "blue"}}/>,
                         <EditOutlined key="edit" style={{color: "blue"}}/>,
                       ]}
                 >   
-                <Meta title={this.state.name} 
+                <Meta title={this.state.firstName +" " + this.state.lastName} 
                     description={this.state.age + " yrs old"} />
                 <Meta description={this.state.email}/>
                 <Meta description={this.state.birthday} />
