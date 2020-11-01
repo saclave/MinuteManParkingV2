@@ -76,3 +76,7 @@
   pointer-events: none;
   cursor: default;
 }
+
+.ant-card {
+  margin: 10px;
+}
