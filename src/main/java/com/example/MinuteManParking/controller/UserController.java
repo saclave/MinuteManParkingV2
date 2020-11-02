@@ -1,4 +1,5 @@
 package com.example.MinuteManParking.controller;
+
 import com.example.MinuteManParking.dto.UserRequest;
 import com.example.MinuteManParking.dto.UserResponse;
 import com.example.MinuteManParking.mapper.UserMapper;
@@ -55,6 +56,12 @@ public class UserController {
     @GetMapping(params = {"username", "password"})
     public UserResponse getByUsernamePassword(@RequestParam("username") String username, @RequestParam("password") String password) {
         User user = userService.findByUsernamePassword(username, password);
+        return userMapper.toResponse(user);
+    }
+
+    @GetMapping(params = {"email", "password"})
+    public UserResponse getByEmailPassword(@RequestParam("email") String email, @RequestParam("password") String password) {
+        User user = userService.findByEmailPassword(email, password);
         return userMapper.toResponse(user);
     }
 }

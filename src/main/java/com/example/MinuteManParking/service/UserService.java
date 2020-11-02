@@ -1,13 +1,17 @@
 package com.example.MinuteManParking.service;
 
-import com.example.MinuteManParking.exceptions.UsernameAlreadyExisting;
+import com.example.MinuteManParking.exceptions.EmailAlreadyExistException;
+import com.example.MinuteManParking.exceptions.UserNotFound;
+import com.example.MinuteManParking.exceptions.UsernameAlreadyExist;
 import com.example.MinuteManParking.model.User;
 import com.example.MinuteManParking.repository.UserRepository;
-import com.example.MinuteManParking.exceptions.UserNotFound;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
+
+import static com.example.MinuteManParking.exceptions.EmailAlreadyExistException.EMAIL_ALREADY_EXISTING;
 import static com.example.MinuteManParking.exceptions.UserNotFound.USER_NOT_FOUND;
-import static com.example.MinuteManParking.exceptions.UsernameAlreadyExisting.USERNAME_ALREADY_EXISTING;
+import static com.example.MinuteManParking.exceptions.UsernameAlreadyExist.USERNAME_ALREADY_EXISTING;
 
 @Service
 public class UserService {
@@ -17,12 +21,19 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    //TODO unique email
     public User create(User user) {
-        if(userRepository.findByUsername(user.getUsername()) == null){
+        if (isUniqueUsernameAndEmail(user)) {
             return userRepository.save(user);
         }
-        throw new UsernameAlreadyExisting(USERNAME_ALREADY_EXISTING);
+        if (user.getUsername() != null) {
+            throw new UsernameAlreadyExist(USERNAME_ALREADY_EXISTING);
+        }
+        throw new EmailAlreadyExistException(EMAIL_ALREADY_EXISTING);
+    }
+
+    private boolean isUniqueUsernameAndEmail(User user) {
+        return userRepository.findByUsername(user.getUsername()) == null
+                && userRepository.findByEmail(user.getEmail()) == null;
     }
 
     public List<User> getAll() {
@@ -38,38 +49,32 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    //TODO remove null validat
     public User update(Integer id, User user) {
         User retrievedUser = retrieve(id);
-        if(user.getFirstName() != null){
-            retrievedUser.setFirstName(user.getFirstName());
-        }
-        if(user.getLastName() != null){
-            retrievedUser.setLastName(user.getLastName());
-        }
-        if(user.getBirthdate() != null){
-            retrievedUser.setBirthdate(user.getBirthdate());
-        }
-        if(user.getEmail() != null){
-            retrievedUser.setEmail(user.getEmail());
-        }
-        if(user.getGender() != null){
-            retrievedUser.setGender(user.getGender());
-        }
-        if(user.getUsername() != null){
-            retrievedUser.setUsername(user.getUsername());
-        }
-        if(user.getPassword() != null){
-            retrievedUser.setPassword(user.getPassword());
-        }
+
+        retrievedUser.setFirstName(user.getFirstName());
+        retrievedUser.setLastName(user.getLastName());
+        retrievedUser.setBirthdate(user.getBirthdate());
+        retrievedUser.setEmail(user.getEmail());
+        retrievedUser.setGender(user.getGender());
+        retrievedUser.setUsername(user.getUsername());
+        retrievedUser.setPassword(user.getPassword());
         return userRepository.save(retrievedUser);
     }
 
-    //TODO find by username
     public User findByUsernamePassword(String username, String password) {
-        return userRepository.findByPassword(password).stream()
-                .filter(user -> user.getId().equals(userRepository.findByUsername(username).getId()))
-                .findFirst()
-                .orElseThrow(() -> new UserNotFound(USER_NOT_FOUND));
+        User userRequest = userRepository.findByUsername(username);
+        if (userRequest.getPassword().equals(password)) {
+            return userRequest;
+        }
+        return null;
+    }
+
+    public User findByEmailPassword(String email, String password) {
+        User userRequest = userRepository.findByEmail(email);
+        if (userRequest.getPassword().equals(password)) {
+            return userRequest;
+        }
+        return null;
     }
 }

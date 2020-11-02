@@ -10,13 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 import static java.util.Arrays.asList;
-import static java.util.Optional.of;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.times;
 
-public class UserServiceTest {
+class UserServiceTest {
     private UserRepository userRepository;
     private UserService userService;
 
@@ -55,7 +53,7 @@ public class UserServiceTest {
         //when
         when(userRepository.save(user)).thenReturn(user);
         //then
-        assertEquals(userService.create(user),user);
+        assertEquals(userService.create(user), user);
     }
 
     @Test
@@ -71,30 +69,44 @@ public class UserServiceTest {
     @Test
     void should_return_updated_task_when_update_given_update_details() {
         //given
-        User old = new User("old", "old", "old", "old", "old", "old","old");
-        User expected = new User("expected","expected","expected","expected","expected","expected","expected");
+        User old = new User("old", "old", "old", "old", "old", "old", "old");
+        User expected = new User("expected", "expected", "expected", "expected", "expected", "expected", "expected");
 
         when(userRepository.findById(old.getId())).thenReturn(Optional.of(old));
         when(userRepository.save(old)).thenReturn(expected);
         //when
         User updated = userService.update(old.getId(), old);
         //then
-        assertSame(expected,updated);
+        assertSame(expected, updated);
     }
 
-//    @Test
-//    void should_return_user_when_get_by_username_and_password() {
-//        //given
-//        User user = new User("old", "old", "old", "old", "old", "old","old");
-//        List<User> users = new ArrayList<>();
-//        users.add(user);
-//
-//        when(userRepository.findByPassword(user.getPassword())).thenReturn(users);
-//        when(userRepository.findByUsername(user.getUsername())).thenReturn(user);
-//
-//        //when
-//        User updated = userService.findByUsernamePassword(user.getUsername(), user.getPassword());
-//        //then
-//        assertSame(user,updated);
-//    }
+    @Test
+    void should_return_user_when_get_by_username_and_password() {
+        //given
+        User user = new User("old", "old", "old", "old", "old", "old", "old");
+        List<User> users = new ArrayList<>();
+        users.add(user);
+
+        when(userRepository.findByUsername(user.getUsername())).thenReturn(user);
+
+        //when
+        User updated = userService.findByUsernamePassword(user.getUsername(), user.getPassword());
+        //then
+        assertSame(user, updated);
+    }
+
+    @Test
+    void should_return_user_when_get_by_email_and_password() {
+        //given
+        User user = new User("old", "old", "old", "old", "old", "old", "old");
+        List<User> users = new ArrayList<>();
+        users.add(user);
+
+        when(userRepository.findByEmail(user.getEmail())).thenReturn(user);
+
+        //when
+        User updated = userService.findByEmailPassword(user.getEmail(), user.getPassword());
+        //then
+        assertSame(user, updated);
+    }
 }
