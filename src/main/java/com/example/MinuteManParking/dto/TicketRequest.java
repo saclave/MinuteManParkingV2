@@ -1,39 +1,22 @@
-package com.example.MinuteManParking.model;
+package com.example.MinuteManParking.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
-public class Ticket {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ticketId;
+public class TicketRequest {
     private Integer slotId;
     private Integer carId;
     private String timeIn;
     private String timeOut;
     private String ticketName;
 
-    public Ticket() {
+    public TicketRequest() {
 
     }
 
-    public Ticket(Integer slotId, Integer carId, String timeIn, String timeOut, String ticketName) {
+    public TicketRequest(Integer slotId, Integer carId, String timeIn, String timeOut, String ticketName) {
         this.slotId = slotId;
         this.carId = carId;
         this.timeIn = timeIn;
         this.timeOut = timeOut;
         this.ticketName = ticketName;
-    }
-
-    public Integer getTicketId() {
-        return ticketId;
-    }
-
-    public void setTicketId(Integer ticketId) {
-        this.ticketId = ticketId;
     }
 
     public Integer getSlotId() {

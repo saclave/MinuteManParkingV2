@@ -1,14 +1,6 @@
-package com.example.MinuteManParking.model;
+package com.example.MinuteManParking.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
-public class Ticket {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class TicketResponse {
     private Integer ticketId;
     private Integer slotId;
     private Integer carId;
@@ -16,11 +8,12 @@ public class Ticket {
     private String timeOut;
     private String ticketName;
 
-    public Ticket() {
+    public TicketResponse() {
 
     }
 
-    public Ticket(Integer slotId, Integer carId, String timeIn, String timeOut, String ticketName) {
+    public TicketResponse(Integer ticketId, Integer slotId, Integer carId, String timeIn, String timeOut, String ticketName) {
+        this.ticketId = ticketId;
         this.slotId = slotId;
         this.carId = carId;
         this.timeIn = timeIn;
