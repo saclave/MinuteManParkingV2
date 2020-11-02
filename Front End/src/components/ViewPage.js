@@ -25,11 +25,11 @@ class ViewPage extends Component {
                 <Card
                       className="viewCard"
                       style={{ width: 250 }}
-                      cover={
-                        <QRCode value={this.state.ticket} size='1000'/>
-                      }
+                    //   cover={
+                    //     <QRCode value={this.state.ticket} size='1000'/>
+                    //   }
                       actions={[
-                        <SettingOutlined key="setting" style={{color: "blue"}}/>,
+                        //<SettingOutlined key="setting" style={{color: "blue"}}/>,
                         <EditOutlined key="edit" style={{color: "blue"}}/>,
                       ]}
                 >   

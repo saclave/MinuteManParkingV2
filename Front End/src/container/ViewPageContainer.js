@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import { getAccount } from '../actions';
 import ViewPage from '../components/ViewPage';
 
-const mapDispatchToProps = dispatch => ({
-    getAccount: (accounts) => { dispatch(getAccount(accounts)) },
+const mapStateToProps = state => ({
+    account: state.account
 });
-const ViewPageContainer = connect(null, mapDispatchToProps)(ViewPage);
+const ViewPageContainer = connect(mapStateToProps)(ViewPage);
 
 export default ViewPageContainer;
