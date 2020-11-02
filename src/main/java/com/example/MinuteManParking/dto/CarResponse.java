@@ -1,11 +1,11 @@
 package com.example.MinuteManParking.dto;
 
 public class CarResponse {
-    Integer carId;
-    Integer userId;
-    String plateNumber;
-    String color;
-    String brand;
+    private Integer carId;
+    private Integer userId;
+    private String plateNumber;
+    private String color;
+    private String brand;
 
     public CarResponse() { }
 

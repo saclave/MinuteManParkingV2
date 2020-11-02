@@ -8,11 +8,11 @@ import javax.persistence.Id;
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer carId;
-    Integer userId;
-    String plateNumber;
-    String color;
-    String brand;
+    private Integer carId;
+    private Integer userId;
+    private String plateNumber;
+    private String color;
+    private String brand;
 
     public Car() { }
 

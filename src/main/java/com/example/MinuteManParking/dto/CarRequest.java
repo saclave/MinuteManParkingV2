@@ -1,9 +1,9 @@
 package com.example.MinuteManParking.dto;
 
 public class CarRequest {
-    String plateNumber;
-    String color;
-    String brand;
+    private String plateNumber;
+    private String color;
+    private String brand;
 
     public CarRequest() { }
 
