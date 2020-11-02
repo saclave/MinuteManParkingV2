@@ -1,9 +1,7 @@
 package com.example.MinuteManParking.service;
 
 import com.example.MinuteManParking.model.ParkingLot;
-import com.example.MinuteManParking.model.User;
 import com.example.MinuteManParking.repository.ParkingLotRepository;
-import com.example.MinuteManParking.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -42,8 +40,8 @@ public class ParkingLotServiceTest {
         //given
         ParkingLot expected = new ParkingLot();
         //when
-        when(parkingLotRepository.findById(expected.getId())).thenReturn(java.util.Optional.of(expected));
-        ParkingLot actual = parkingLotService.retrieve(expected.getId());
+        when(parkingLotRepository.findById(expected.getParkingLotId())).thenReturn(java.util.Optional.of(expected));
+        ParkingLot actual = parkingLotService.retrieve(expected.getParkingLotId());
         //then
         assertEquals(expected, actual);
     }
@@ -55,7 +53,7 @@ public class ParkingLotServiceTest {
         //when
         when(parkingLotRepository.save(parkingLot)).thenReturn(parkingLot);
         //then
-        assertEquals(parkingLotService.create(parkingLot),parkingLot);
+        assertEquals(parkingLotService.create(parkingLot), parkingLot);
     }
 
     @Test
@@ -63,22 +61,22 @@ public class ParkingLotServiceTest {
         //given
         ParkingLot parkingLot = new ParkingLot();
         //when
-        parkingLotService.delete(parkingLot.getId());
+        parkingLotService.delete(parkingLot.getParkingLotId());
         //then
-        verify(parkingLotRepository, times(1)).deleteById(parkingLot.getId());
+        verify(parkingLotRepository, times(1)).deleteById(parkingLot.getParkingLotId());
     }
 
     @Test
     void should_return_updated_task_when_update_given_update_details() {
         //given
-        ParkingLot old = new ParkingLot(1.0,1.0,"old",1.0);
-        ParkingLot expected = new ParkingLot(2.0,2.0,"expected",2.0);
+        ParkingLot old = new ParkingLot(1.0, 1.0, "old", 1.0);
+        ParkingLot expected = new ParkingLot(2.0, 2.0, "expected", 2.0);
 
-        when(parkingLotRepository.findById(old.getId())).thenReturn(Optional.of(old));
+        when(parkingLotRepository.findById(old.getParkingLotId())).thenReturn(Optional.of(old));
         when(parkingLotRepository.save(old)).thenReturn(expected);
         //when
-        ParkingLot updated = parkingLotService.update(old.getId(), old);
+        ParkingLot updated = parkingLotService.update(old.getParkingLotId(), old);
         //then
-        assertSame(expected,updated);
+        assertSame(expected, updated);
     }
 }

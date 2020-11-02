@@ -1,30 +1,30 @@
 package com.example.MinuteManParking.dto;
 
 public class ParkingLotResponse {
-    Integer id;
-    Double longitude;
-    Double latitude;
-    String address;
-    Double price;
+    private Integer parkingLotId;
+    private Double longitude;
+    private Double latitude;
+    private String address;
+    private Double price;
 
-    public ParkingLotResponse(){
+    public ParkingLotResponse() {
 
     }
 
-    public ParkingLotResponse(Integer id, Double longitude, Double latitude, String address, Double price) {
-        this.id = id;
+    public ParkingLotResponse(Integer parkingLotId, Double longitude, Double latitude, String address, Double price) {
+        this.parkingLotId = parkingLotId;
         this.longitude = longitude;
         this.latitude = latitude;
         this.address = address;
         this.price = price;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getParkingLotId() {
+        return parkingLotId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setParkingLotId(Integer parkingLotId) {
+        this.parkingLotId = parkingLotId;
     }
 
     public Double getLongitude() {

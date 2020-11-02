@@ -36,18 +36,10 @@ public class ParkingLotService {
 
     public ParkingLot update(Integer id, ParkingLot parkingLot) {
         ParkingLot retrievedParkingLot = retrieve(id);
-        if(parkingLot.getAddress() != null){
-            retrievedParkingLot.setAddress(parkingLot.getAddress());
-        }
-        if(parkingLot.getLatitude() != null){
-            retrievedParkingLot.setLatitude(parkingLot.getLatitude());
-        }
-        if(parkingLot.getLongitude() != null){
-            retrievedParkingLot.setLongitude(parkingLot.getLongitude());
-        }
-        if(parkingLot.getPrice() != null){
-            retrievedParkingLot.setPrice(parkingLot.getPrice());
-        }
+        retrievedParkingLot.setAddress(parkingLot.getAddress());
+        retrievedParkingLot.setLatitude(parkingLot.getLatitude());
+        retrievedParkingLot.setLongitude(parkingLot.getLongitude());
+        retrievedParkingLot.setPrice(parkingLot.getPrice());
         return parkingLotRepository.save(retrievedParkingLot);
     }
 }

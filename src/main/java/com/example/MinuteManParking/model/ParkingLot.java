@@ -9,13 +9,13 @@ import javax.persistence.Id;
 public class ParkingLot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
-    Double longitude;
-    Double latitude;
-    String address;
-    Double price;
+    private Integer parkingLotId;
+    private Double longitude;
+    private Double latitude;
+    private String address;
+    private Double price;
 
-    public ParkingLot(){
+    public ParkingLot() {
 
     }
 
@@ -26,12 +26,12 @@ public class ParkingLot {
         this.price = price;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getParkingLotId() {
+        return parkingLotId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setParkingLotId(Integer parkingLotId) {
+        this.parkingLotId = parkingLotId;
     }
 
     public Double getLongitude() {

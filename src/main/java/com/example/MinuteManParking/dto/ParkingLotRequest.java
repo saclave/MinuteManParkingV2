@@ -1,12 +1,12 @@
 package com.example.MinuteManParking.dto;
 
 public class ParkingLotRequest {
-    Double longitude;
-    Double latitude;
-    String address;
-    Double price;
+    private Double longitude;
+    private Double latitude;
+    private String address;
+    private Double price;
 
-    public ParkingLotRequest(){
+    public ParkingLotRequest() {
 
     }
 

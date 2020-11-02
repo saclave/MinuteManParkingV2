@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ParkingLotMapper {
-    public ParkingLotResponse toResponse(ParkingLot parkingLot){
+    public ParkingLotResponse toResponse(ParkingLot parkingLot) {
         ParkingLotResponse parkingLotResponse = new ParkingLotResponse();
         BeanUtils.copyProperties(parkingLot, parkingLotResponse);
         return parkingLotResponse;
     }
 
-    public ParkingLot toEntity(ParkingLotRequest parkingLotRequest){
+    public ParkingLot toEntity(ParkingLotRequest parkingLotRequest) {
         ParkingLot parkingLot = new ParkingLot();
         BeanUtils.copyProperties(parkingLotRequest, parkingLot);
         return parkingLot;
