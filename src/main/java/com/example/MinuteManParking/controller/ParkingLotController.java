@@ -3,6 +3,7 @@ package com.example.MinuteManParking.controller;
 import com.example.MinuteManParking.dto.ParkingLotRequest;
 import com.example.MinuteManParking.dto.ParkingLotResponse;
 import com.example.MinuteManParking.model.ParkingLot;
+import com.example.MinuteManParking.model.ParkingSlot;
 import com.example.MinuteManParking.service.ParkingLotService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -50,5 +51,10 @@ public class ParkingLotController {
     public ParkingLotResponse updateById(@PathVariable Integer id, @RequestBody ParkingLotRequest parkingLotRequest) {
         ParkingLot parkingLot = parkingLotService.update(id, PARKING_LOT_MAPPER.toEntity(parkingLotRequest));
         return PARKING_LOT_MAPPER.toResponse(parkingLot);
+    }
+
+    @GetMapping("/{id}/slotList")
+    public List<ParkingSlot> getParkingSlotList(@PathVariable Integer id) {
+        return parkingLotService.getParkingSlotsByParkingLot(id);
     }
 }

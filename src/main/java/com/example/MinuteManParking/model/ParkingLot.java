@@ -7,7 +7,7 @@ import java.util.List;
 public class ParkingLot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer parkingLotId;
+    private Integer id;
     private Double longitude;
     private Double latitude;
     private String address;
@@ -23,19 +23,12 @@ public class ParkingLot {
 
     }
 
-    public ParkingLot(Double longitude, Double latitude, String address, Double price) {
-        this.longitude = longitude;
-        this.latitude = latitude;
-        this.address = address;
-        this.price = price;
+    public Integer getId() {
+        return id;
     }
 
-    public Integer getParkingLotId() {
-        return parkingLotId;
-    }
-
-    public void setParkingLotId(Integer parkingLotId) {
-        this.parkingLotId = parkingLotId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Double getLongitude() {
@@ -68,5 +61,13 @@ public class ParkingLot {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public List<ParkingSlot> getParkingSlotList() {
+        return parkingSlotList;
+    }
+
+    public void setParkingSlotList(List<ParkingSlot> parkingSlotList) {
+        this.parkingSlotList = parkingSlotList;
     }
 }

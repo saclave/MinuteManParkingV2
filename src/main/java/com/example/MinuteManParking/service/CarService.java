@@ -2,23 +2,23 @@ package com.example.MinuteManParking.service;
 
 import com.example.MinuteManParking.exceptions.CarNotFoundException;
 import com.example.MinuteManParking.model.Car;
+import com.example.MinuteManParking.model.Ticket;
 import com.example.MinuteManParking.repository.CarRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import static com.example.MinuteManParking.exceptions.ExceptionConstants.*;
+
+import static com.example.MinuteManParking.exceptions.ExceptionConstants.CAR_NOT_FOUND;
 
 @Service
 public class CarService {
-    //TODO set final
-    private CarRepository carRepository;
+    private final CarRepository carRepository;
 
-    public CarService(CarRepository carRepository){
+    public CarService(CarRepository carRepository) {
         this.carRepository = carRepository;
     }
 
-    public List<Car> getAllCars() {
+    public List<Car> getAll() {
         return carRepository.findAll();
     }
 
@@ -26,20 +26,26 @@ public class CarService {
         return carRepository.save(car);
     }
 
-    public Car getCar(Integer id) {
+    public Car retrieve(Integer id) {
         return carRepository.findById(id).orElseThrow(() -> new CarNotFoundException(CAR_NOT_FOUND));
     }
 
-    public Car updateCarDetails(Integer id, Car carRequest) {
-        Car car = carRepository.findById(id).orElseThrow(() ->
-                new CarNotFoundException(CAR_NOT_FOUND));
-
-        car.setBrand(carRequest.getBrand());
-        car.setColor(carRequest.getColor());
-        car.setPlateNumber(carRequest.getPlateNumber());
-        return carRepository.save(car);
+    public Car update(Integer id, Car car) {
+        Car retrievedCar = retrieve(id);
+        retrievedCar.setBrand(car.getBrand());
+        retrievedCar.setColor(car.getColor());
+        retrievedCar.setPlateNumber(car.getPlateNumber());
+        return carRepository.save(retrievedCar);
     }
-    //TODO exception if not existing
-    public void deleteCar(Integer id) {  carRepository.deleteById(id); }
 
+    public void delete(Integer id) {
+        retrieve(id);
+        carRepository.deleteById(id);
+    }
+
+    public List<Ticket> getTicketByCar(Integer id) {
+        return carRepository.findById(id)
+                .map(Car::getTicketList)
+                .orElseThrow(()-> new CarNotFoundException(CAR_NOT_FOUND));
+    }
 }

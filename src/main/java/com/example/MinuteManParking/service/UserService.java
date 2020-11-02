@@ -3,36 +3,35 @@ package com.example.MinuteManParking.service;
 import com.example.MinuteManParking.exceptions.EmailAlreadyExistException;
 import com.example.MinuteManParking.exceptions.UserNotFound;
 import com.example.MinuteManParking.exceptions.UsernameAlreadyExist;
+import com.example.MinuteManParking.model.Car;
+import com.example.MinuteManParking.model.Ticket;
 import com.example.MinuteManParking.model.User;
 import com.example.MinuteManParking.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import static com.example.MinuteManParking.exceptions.ExceptionConstants.*;
 
 
 @Service
 public class UserService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    //TODO which field is wrong https://www.baeldung.com/spring-data-exists-query
+
     public User create(User user) {
-        if (isUniqueUsernameAndEmail(user)) {
-            return userRepository.save(user);
+        if (userRepository.existsUserByEmail(user.getEmail())) {
+            throw new EmailAlreadyExistException(EMAIL_ALREADY_EXISTING);
         }
-        if (user.getUsername() != null) {
+        if (userRepository.existsUserByUsername(user.getUsername())) {
             throw new UsernameAlreadyExist(USERNAME_ALREADY_EXISTING);
         }
-        throw new EmailAlreadyExistException(EMAIL_ALREADY_EXISTING);
-    }
-
-    private boolean isUniqueUsernameAndEmail(User user) {
-        //TODO findby username and email or https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation
-        return userRepository.findByUsername(user.getUsername()) == null
-                && userRepository.findByEmail(user.getEmail()) == null;
+        return userRepository.save(user);
     }
 
     public List<User> getAll() {
@@ -45,12 +44,12 @@ public class UserService {
     }
 
     public void delete(Integer id) {
+        retrieve(id);
         userRepository.deleteById(id);
     }
 
     public User update(Integer id, User user) {
         User retrievedUser = retrieve(id);
-
         retrievedUser.setFirstName(user.getFirstName());
         retrievedUser.setLastName(user.getLastName());
         retrievedUser.setBirthdate(user.getBirthdate());
@@ -58,22 +57,27 @@ public class UserService {
         retrievedUser.setGender(user.getGender());
         retrievedUser.setUsername(user.getUsername());
         retrievedUser.setPassword(user.getPassword());
+        retrievedUser.setCash(user.getCash());
         return userRepository.save(retrievedUser);
     }
 
-    public User findByUsernamePassword(String username, String password) {
-        User userRequest = userRepository.findByUsername(username);
-        if (userRequest.getPassword().equals(password)) {
-            return userRequest;
-        }
-        return null;
+    public User findByUsernameAndPassword(String username, String password) {
+        return userRepository.findByUsernameAndPassword(username, password);
     }
 
-    public User findByEmailPassword(String email, String password) {
-        User userRequest = userRepository.findByEmail(email);
-        if (userRequest.getPassword().equals(password)) {
-            return userRequest;
-        }
-        return null;
+    public List<Car> getCarsByUserId(Integer id) {
+        return userRepository.findById(id)
+                .map(User::getCarList)
+                .orElseThrow(()-> new UserNotFound(USER_NOT_FOUND));
+    }
+
+    public List<Ticket> getTicketsByUserId(Integer id) {
+        return getCarsByUserId(id)
+                .stream()
+                .map(Car::getTicketList)
+                .collect(Collectors.toList())
+                .stream()
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
     }
 }

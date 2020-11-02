@@ -1,30 +1,27 @@
 package com.example.MinuteManParking.dto;
 
+import com.example.MinuteManParking.model.ParkingSlot;
+
+import java.util.List;
+
 public class ParkingLotResponse {
-    private Integer parkingLotId;
+    private Integer id;
     private Double longitude;
     private Double latitude;
     private String address;
     private Double price;
+    private List<ParkingSlot> parkingSlotList;
 
     public ParkingLotResponse() {
 
     }
 
-    public ParkingLotResponse(Integer parkingLotId, Double longitude, Double latitude, String address, Double price) {
-        this.parkingLotId = parkingLotId;
-        this.longitude = longitude;
-        this.latitude = latitude;
-        this.address = address;
-        this.price = price;
+    public Integer getId() {
+        return id;
     }
 
-    public Integer getParkingLotId() {
-        return parkingLotId;
-    }
-
-    public void setParkingLotId(Integer parkingLotId) {
-        this.parkingLotId = parkingLotId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Double getLongitude() {
@@ -57,5 +54,13 @@ public class ParkingLotResponse {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public List<ParkingSlot> getParkingSlotList() {
+        return parkingSlotList;
+    }
+
+    public void setParkingSlotList(List<ParkingSlot> parkingSlotList) {
+        this.parkingSlotList = parkingSlotList;
     }
 }

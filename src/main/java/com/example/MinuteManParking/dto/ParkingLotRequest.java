@@ -10,13 +10,6 @@ public class ParkingLotRequest {
 
     }
 
-    public ParkingLotRequest(Double longitude, Double latitude, String address, Double price) {
-        this.longitude = longitude;
-        this.latitude = latitude;
-        this.address = address;
-        this.price = price;
-    }
-
     public Double getLongitude() {
         return longitude;
     }

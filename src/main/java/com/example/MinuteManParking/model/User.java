@@ -15,12 +15,7 @@ public class User {
     private String email;
     private String username;
     private String password;
-    @OneToMany(
-            fetch = FetchType.LAZY,
-            orphanRemoval = true
-    )
-    @JoinColumn(name = "userId")
-    private List<Transaction> transactionList;
+    private Double cash;
 
     @OneToMany(
             fetch = FetchType.LAZY,
@@ -31,16 +26,6 @@ public class User {
 
     public User() {
 
-    }
-
-    public User(String firstName, String lastName, String birthdate, String gender, String email, String username, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthdate = birthdate;
-        this.gender = gender;
-        this.email = email;
-        this.username = username;
-        this.password = password;
     }
 
     public Integer getId() {
@@ -105,5 +90,21 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Double getCash() {
+        return cash;
+    }
+
+    public void setCash(Double cash) {
+        this.cash = cash;
+    }
+
+    public List<Car> getCarList() {
+        return carList;
+    }
+
+    public void setCarList(List<Car> carList) {
+        this.carList = carList;
     }
 }

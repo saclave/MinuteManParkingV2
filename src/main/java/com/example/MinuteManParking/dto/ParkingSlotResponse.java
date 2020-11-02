@@ -1,20 +1,18 @@
 package com.example.MinuteManParking.dto;
 
+import com.example.MinuteManParking.model.Ticket;
+
+import java.util.List;
+
 public class ParkingSlotResponse {
     private Integer id;
     private Boolean availability;
     private Integer parkingLotId;
-    private String parkingSlotName;
+    private String name;
+    private List<Ticket> ticketList;
 
     public ParkingSlotResponse() {
 
-    }
-
-    public ParkingSlotResponse(Integer id, Boolean availability, Integer parkingLotId, String parkingSlotName) {
-        this.id = id;
-        this.availability = availability;
-        this.parkingLotId = parkingLotId;
-        this.parkingSlotName = parkingSlotName;
     }
 
     public Integer getId() {
@@ -41,11 +39,19 @@ public class ParkingSlotResponse {
         this.parkingLotId = parkingLotId;
     }
 
-    public String getParkingSlotName() {
-        return parkingSlotName;
+    public String getName() {
+        return name;
     }
 
-    public void setParkingSlotName(String parkingSlotName) {
-        this.parkingSlotName = parkingSlotName;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Ticket> getTicketList() {
+        return ticketList;
+    }
+
+    public void setTicketList(List<Ticket> ticketList) {
+        this.ticketList = ticketList;
     }
 }

@@ -1,7 +1,9 @@
 package com.example.MinuteManParking.service;
 
 import com.example.MinuteManParking.exceptions.ParkingSlotNotFound;
+import com.example.MinuteManParking.model.ParkingLot;
 import com.example.MinuteManParking.model.ParkingSlot;
+import com.example.MinuteManParking.model.Ticket;
 import com.example.MinuteManParking.repository.ParkingSlotRepository;
 import org.springframework.stereotype.Service;
 
@@ -31,17 +33,20 @@ public class ParkingSlotService {
     }
 
     public void delete(Integer id) {
+        retrieve(id);
         parkingSlotRepository.deleteById(id);
     }
 
     public ParkingSlot update(Integer id, ParkingSlot parkingSlot) {
         ParkingSlot retrievedParkingSlot = retrieve(id);
-        retrievedParkingSlot.setParkingLotId(parkingSlot.getParkingLotId());
         retrievedParkingSlot.setAvailability(parkingSlot.getAvailability());
+        retrievedParkingSlot.setName(parkingSlot.getName());
         return parkingSlotRepository.save(retrievedParkingSlot);
     }
 
-    public List<ParkingSlot> getParkingSlotsByParkingLot(Integer parkingLotId) {
-        return parkingSlotRepository.findByParkingLotId(parkingLotId);
+    public List<Ticket> getTicketByParkingSlot(Integer id) {
+        return parkingSlotRepository.findById(id)
+                .map(ParkingSlot::getTicketList)
+                .orElseThrow(() -> new ParkingSlotNotFound(PARKING_SLOT_NOT_FOUND));
     }
 }

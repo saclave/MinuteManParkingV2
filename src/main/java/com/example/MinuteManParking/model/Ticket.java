@@ -1,51 +1,37 @@
 package com.example.MinuteManParking.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ticketId;
-    private Integer slotId;
+    private Integer id;
+    private Integer parkingSlotId;
     private Integer carId;
     private String timeIn;
     private String timeOut;
-    private String ticketName;
-    @OneToMany(
-            fetch = FetchType.LAZY,
-            orphanRemoval = true
-    )
-    @JoinColumn(name = "ticketId")
-    private List<Transaction> transactionList;
+    private String name;
+    private Double amount;
 
     public Ticket() {
 
     }
 
-    public Ticket(Integer slotId, Integer carId, String timeIn, String timeOut, String ticketName) {
-        this.slotId = slotId;
-        this.carId = carId;
-        this.timeIn = timeIn;
-        this.timeOut = timeOut;
-        this.ticketName = ticketName;
+    public Integer getId() {
+        return id;
     }
 
-    public Integer getTicketId() {
-        return ticketId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setTicketId(Integer ticketId) {
-        this.ticketId = ticketId;
+    public Integer getParkingSlotId() {
+        return parkingSlotId;
     }
 
-    public Integer getSlotId() {
-        return slotId;
-    }
-
-    public void setSlotId(Integer slotId) {
-        this.slotId = slotId;
+    public void setParkingSlotId(Integer parkingSlotId) {
+        this.parkingSlotId = parkingSlotId;
     }
 
     public Integer getCarId() {
@@ -72,11 +58,19 @@ public class Ticket {
         this.timeOut = timeOut;
     }
 
-    public String getTicketName() {
-        return ticketName;
+    public String getName() {
+        return name;
     }
 
-    public void setTicketName(String ticketName) {
-        this.ticketName = ticketName;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 }

@@ -31,16 +31,16 @@ public class TicketService {
     }
 
     public void delete(Integer ticketId) {
+        retrieve(ticketId);
         ticketRepository.deleteById(ticketId);
     }
 
     public Ticket update(Integer ticketId, Ticket ticket) {
         Ticket retrievedTicket = retrieve(ticketId);
-        retrievedTicket.setCarId(ticket.getCarId());
-        retrievedTicket.setSlotId(ticket.getSlotId());
-        retrievedTicket.setTicketName(ticket.getTicketName());
+        retrievedTicket.setName(ticket.getName());
         retrievedTicket.setTimeIn(ticket.getTimeIn());
         retrievedTicket.setTimeOut(ticket.getTimeOut());
+        retrievedTicket.setAmount(ticket.getAmount());
         return ticketRepository.save(retrievedTicket);
     }
 }

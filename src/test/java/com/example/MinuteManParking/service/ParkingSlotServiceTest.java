@@ -64,6 +64,7 @@ public class ParkingSlotServiceTest {
         //given
         ParkingSlot parkingSlot = new ParkingSlot();
         //when
+        when(parkingSlotRepository.findById(parkingSlot.getId())).thenReturn(Optional.of(parkingSlot));
         parkingSlotService.delete(parkingSlot.getId());
         //then
         verify(parkingSlotRepository, times(1)).deleteById(parkingSlot.getId());
@@ -72,8 +73,10 @@ public class ParkingSlotServiceTest {
     @Test
     void should_return_updated_parking_slot_when_update_given_update_details() {
         //given
-        ParkingSlot old = new ParkingSlot(true, 1, "a");
-        ParkingSlot expected = new ParkingSlot(false, 1, "b");
+        ParkingSlot old = new ParkingSlot();
+        ParkingSlot expected = new ParkingSlot();
+        old.setAvailability(true);
+        expected.setAvailability(false);
 
         when(parkingSlotRepository.findById(old.getId())).thenReturn(Optional.of(old));
         when(parkingSlotRepository.save(old)).thenReturn(expected);
@@ -81,25 +84,6 @@ public class ParkingSlotServiceTest {
         ParkingSlot updated = parkingSlotService.update(old.getId(), old);
         //then
         assertSame(expected, updated);
-    }
-
-    @Test
-    void should_return_all_slots_when_getParkingSlotsByParkingLot() {
-        //given
-        ParkingSlot parkingSlot1 = new ParkingSlot();
-        parkingSlot1.setParkingLotId(1);
-        ParkingSlot parkingSlot2 = new ParkingSlot();
-        parkingSlot2.setParkingLotId(1);
-        List<ParkingSlot> parkingSlots = new ArrayList<>();
-        parkingSlots.add(parkingSlot1);
-        parkingSlots.add(parkingSlot2);
-
-        //when
-        when(parkingSlotRepository.findByParkingLotId(1)).thenReturn(parkingSlots);
-        List<ParkingSlot> actual = parkingSlotService.getParkingSlotsByParkingLot(1);
-
-        //then
-        assertEquals(2, actual.size());
     }
 
 }

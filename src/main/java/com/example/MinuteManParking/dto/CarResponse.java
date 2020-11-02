@@ -1,26 +1,25 @@
 package com.example.MinuteManParking.dto;
 
+import com.example.MinuteManParking.model.Ticket;
+
+import java.util.List;
+
 public class CarResponse {
-    private Integer carId;
+    private Integer id;
     private Integer userId;
     private String plateNumber;
     private String color;
     private String brand;
+    private List<Ticket> ticketList;
 
     public CarResponse() { }
 
-    public CarResponse(String plateNumber, String color, String brand) {
-        this.plateNumber = plateNumber;
-        this.color = color;
-        this.brand = brand;
+    public Integer getId() {
+        return id;
     }
 
-    public Integer getCarId() {
-        return carId;
-    }
-
-    public void setCarId(Integer carId) {
-        this.carId = carId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getUserId() {
@@ -53,5 +52,13 @@ public class CarResponse {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public List<Ticket> getTicketList() {
+        return ticketList;
+    }
+
+    public void setTicketList(List<Ticket> ticketList) {
+        this.ticketList = ticketList;
     }
 }

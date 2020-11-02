@@ -10,23 +10,16 @@ public class ParkingSlot {
     private Integer id;
     private Boolean availability;
     private Integer parkingLotId;
-    //TODO rename this
-    private String parkingSlotName;
+    private String name;
     @OneToMany(
             fetch = FetchType.LAZY,
             orphanRemoval = true
     )
-    @JoinColumn(name = "slotId")
+    @JoinColumn(name = "parkingSlotId")
     private List<Ticket> ticketList;
 
     public ParkingSlot() {
 
-    }
-
-    public ParkingSlot(Boolean availability, Integer parkingLotId, String parkingSlotName) {
-        this.availability = availability;
-        this.parkingLotId = parkingLotId;
-        this.parkingSlotName = parkingSlotName;
     }
 
     public Integer getId() {
@@ -53,11 +46,19 @@ public class ParkingSlot {
         this.parkingLotId = parkingLotId;
     }
 
-    public String getParkingSlotName() {
-        return parkingSlotName;
+    public String getName() {
+        return name;
     }
 
-    public void setParkingSlotName(String parkingSlotName) {
-        this.parkingSlotName = parkingSlotName;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Ticket> getTicketList() {
+        return ticketList;
+    }
+
+    public void setTicketList(List<Ticket> ticketList) {
+        this.ticketList = ticketList;
     }
 }
