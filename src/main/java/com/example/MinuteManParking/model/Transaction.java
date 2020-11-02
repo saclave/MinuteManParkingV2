@@ -9,9 +9,10 @@ import javax.persistence.Id;
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private
     Integer transactionId;
-    Integer userId;
-    Integer ticketId;
+    private Integer userId;
+    private Integer ticketId;
 
     public Transaction() { }
 

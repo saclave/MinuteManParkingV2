@@ -1,9 +1,9 @@
 package com.example.MinuteManParking.dto;
 
 public class TransactionResponse {
-    Integer transactionId;
-    Integer userId;
-    Integer ticketId;
+    private Integer transactionId;
+    private Integer userId;
+    private Integer ticketId;
 
     public TransactionResponse() { }
 

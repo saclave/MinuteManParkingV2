@@ -1,8 +1,8 @@
 package com.example.MinuteManParking.dto;
 
 public class TransactionRequest {
-    Integer userId;
-    Integer ticketId;
+    private Integer userId;
+    private Integer ticketId;
 
     public TransactionRequest() { }
 
