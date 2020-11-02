@@ -56,7 +56,7 @@ public class ParkingSlotServiceTest {
         //when
         when(parkingSlotRepository.save(parkingSlot)).thenReturn(parkingSlot);
         //then
-        assertEquals(parkingSlotService.create(parkingSlot),parkingSlot);
+        assertEquals(parkingSlotService.create(parkingSlot), parkingSlot);
     }
 
     @Test
@@ -72,15 +72,15 @@ public class ParkingSlotServiceTest {
     @Test
     void should_return_updated_parking_slot_when_update_given_update_details() {
         //given
-        ParkingSlot old = new ParkingSlot(true,1);
-        ParkingSlot expected = new ParkingSlot(false,1);
+        ParkingSlot old = new ParkingSlot(true, 1, "a");
+        ParkingSlot expected = new ParkingSlot(false, 1, "b");
 
         when(parkingSlotRepository.findById(old.getId())).thenReturn(Optional.of(old));
         when(parkingSlotRepository.save(old)).thenReturn(expected);
         //when
         ParkingSlot updated = parkingSlotService.update(old.getId(), old);
         //then
-        assertSame(expected,updated);
+        assertSame(expected, updated);
     }
 
     @Test

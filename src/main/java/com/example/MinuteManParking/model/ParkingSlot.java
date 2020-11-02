@@ -9,17 +9,19 @@ import javax.persistence.Id;
 public class ParkingSlot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
-    Boolean availability;
-    Integer parkingLotId;
+    private Integer id;
+    private Boolean availability;
+    private Integer parkingLotId;
+    private String parkingSlotName;
 
-    public ParkingSlot(){
+    public ParkingSlot() {
 
     }
 
-    public ParkingSlot(Boolean availability, Integer parkingLotId) {
+    public ParkingSlot(Boolean availability, Integer parkingLotId, String parkingSlotName) {
         this.availability = availability;
         this.parkingLotId = parkingLotId;
+        this.parkingSlotName = parkingSlotName;
     }
 
     public Integer getId() {
@@ -44,5 +46,13 @@ public class ParkingSlot {
 
     public void setParkingLotId(Integer parkingLotId) {
         this.parkingLotId = parkingLotId;
+    }
+
+    public String getParkingSlotName() {
+        return parkingSlotName;
+    }
+
+    public void setParkingSlotName(String parkingSlotName) {
+        this.parkingSlotName = parkingSlotName;
     }
 }

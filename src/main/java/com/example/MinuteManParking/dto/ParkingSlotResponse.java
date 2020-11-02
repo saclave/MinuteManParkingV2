@@ -1,18 +1,20 @@
 package com.example.MinuteManParking.dto;
 
 public class ParkingSlotResponse {
-    Integer id;
-    Boolean availability;
-    Integer parkingLotId;
+    private Integer id;
+    private Boolean availability;
+    private Integer parkingLotId;
+    private String parkingSlotName;
 
-    public ParkingSlotResponse(){
+    public ParkingSlotResponse() {
 
     }
 
-    public ParkingSlotResponse(Integer id, Boolean availability, Integer parkingLotId) {
+    public ParkingSlotResponse(Integer id, Boolean availability, Integer parkingLotId, String parkingSlotName) {
         this.id = id;
         this.availability = availability;
         this.parkingLotId = parkingLotId;
+        this.parkingSlotName = parkingSlotName;
     }
 
     public Integer getId() {
@@ -37,5 +39,13 @@ public class ParkingSlotResponse {
 
     public void setParkingLotId(Integer parkingLotId) {
         this.parkingLotId = parkingLotId;
+    }
+
+    public String getParkingSlotName() {
+        return parkingSlotName;
+    }
+
+    public void setParkingSlotName(String parkingSlotName) {
+        this.parkingSlotName = parkingSlotName;
     }
 }

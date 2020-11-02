@@ -36,12 +36,8 @@ public class ParkingSlotService {
 
     public ParkingSlot update(Integer id, ParkingSlot parkingSlot) {
         ParkingSlot retrievedParkingSlot = retrieve(id);
-        if(parkingSlot.getParkingLotId() != null){
-            retrievedParkingSlot.setParkingLotId(parkingSlot.getParkingLotId());
-        }
-        if(parkingSlot.getAvailability() != null){
-            retrievedParkingSlot.setAvailability(parkingSlot.getAvailability());
-        }
+        retrievedParkingSlot.setParkingLotId(parkingSlot.getParkingLotId());
+        retrievedParkingSlot.setAvailability(parkingSlot.getAvailability());
         return parkingSlotRepository.save(retrievedParkingSlot);
     }
 
