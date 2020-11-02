@@ -1,5 +1,6 @@
 package com.example.MinuteManParking.model;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Car {
@@ -10,7 +11,12 @@ public class Car {
     private String plateNumber;
     private String color;
     private String brand;
-
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+    )
+    @JoinColumn(name = "carId")
+    private List<Ticket> ticketList;
 
     public Car() { }
 

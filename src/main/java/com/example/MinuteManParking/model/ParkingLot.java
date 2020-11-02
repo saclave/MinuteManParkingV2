@@ -1,9 +1,7 @@
 package com.example.MinuteManParking.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class ParkingLot {
@@ -14,6 +12,12 @@ public class ParkingLot {
     private Double latitude;
     private String address;
     private Double price;
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+    )
+    @JoinColumn(name = "parkingLotId")
+    private List<ParkingSlot> parkingSlotList;
 
     public ParkingLot() {
 

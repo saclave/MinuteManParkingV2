@@ -18,7 +18,7 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    //TODO which field is wrong
+    //TODO which field is wrong https://www.baeldung.com/spring-data-exists-query
     public User create(User user) {
         if (isUniqueUsernameAndEmail(user)) {
             return userRepository.save(user);

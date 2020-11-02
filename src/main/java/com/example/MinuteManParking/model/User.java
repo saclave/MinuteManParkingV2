@@ -15,6 +15,19 @@ public class User {
     private String email;
     private String username;
     private String password;
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+    )
+    @JoinColumn(name = "userId")
+    private List<Transaction> transactionList;
+
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+    )
+    @JoinColumn(name = "userId")
+    private List<Car> carList;
 
     public User() {
 
