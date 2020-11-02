@@ -5,14 +5,16 @@ import com.example.MinuteManParking.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.mockito.Mockito.*;
 
-public class UserServiceTest {
+class UserServiceTest {
     private UserRepository userRepository;
     private UserService userService;
 
@@ -34,12 +36,77 @@ public class UserServiceTest {
     }
 
     @Test
+    void should_return_correct_user_when_get_by_id() {
+        //given
+        User expected = new User();
+        //when
+        when(userRepository.findById(expected.getId())).thenReturn(java.util.Optional.of(expected));
+        User actual = userService.retrieve(expected.getId());
+        //then
+        assertEquals(expected, actual);
+    }
+
+    @Test
     void should_return_user_when_create_given_user() {
         //given
         User user = new User();
         //when
         when(userRepository.save(user)).thenReturn(user);
         //then
-        assertEquals(userService.create(user),user);
+        assertEquals(userService.create(user), user);
+    }
+
+    @Test
+    void should_remove_todo_when_delete_by_id() {
+        //given
+        User user = new User();
+        //when
+        userService.delete(user.getId());
+        //then
+        verify(userRepository, times(1)).deleteById(user.getId());
+    }
+
+    @Test
+    void should_return_updated_task_when_update_given_update_details() {
+        //given
+        User old = new User("old", "old", "old", "old", "old", "old", "old");
+        User expected = new User("expected", "expected", "expected", "expected", "expected", "expected", "expected");
+
+        when(userRepository.findById(old.getId())).thenReturn(Optional.of(old));
+        when(userRepository.save(old)).thenReturn(expected);
+        //when
+        User updated = userService.update(old.getId(), old);
+        //then
+        assertSame(expected, updated);
+    }
+
+    @Test
+    void should_return_user_when_get_by_username_and_password() {
+        //given
+        User user = new User("old", "old", "old", "old", "old", "old", "old");
+        List<User> users = new ArrayList<>();
+        users.add(user);
+
+        when(userRepository.findByUsername(user.getUsername())).thenReturn(user);
+
+        //when
+        User updated = userService.findByUsernamePassword(user.getUsername(), user.getPassword());
+        //then
+        assertSame(user, updated);
+    }
+
+    @Test
+    void should_return_user_when_get_by_email_and_password() {
+        //given
+        User user = new User("old", "old", "old", "old", "old", "old", "old");
+        List<User> users = new ArrayList<>();
+        users.add(user);
+
+        when(userRepository.findByEmail(user.getEmail())).thenReturn(user);
+
+        //when
+        User updated = userService.findByEmailPassword(user.getEmail(), user.getPassword());
+        //then
+        assertSame(user, updated);
     }
 }

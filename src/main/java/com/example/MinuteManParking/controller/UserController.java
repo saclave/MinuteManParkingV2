@@ -1,4 +1,5 @@
 package com.example.MinuteManParking.controller;
+
 import com.example.MinuteManParking.dto.UserRequest;
 import com.example.MinuteManParking.dto.UserResponse;
 import com.example.MinuteManParking.mapper.UserMapper;
@@ -29,10 +30,38 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public UserResponse addUser(@RequestBody UserRequest userRequest) {
+    public UserResponse add(@RequestBody UserRequest userRequest) {
         User user = userService.create(userMapper.toEntity(userRequest));
         return userMapper.toResponse(user);
     }
 
+    @GetMapping("/{id}")
+    public UserResponse getById(@PathVariable Integer id) {
+        User user = userService.retrieve(id);
+        return userMapper.toResponse(user);
+    }
 
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Integer id) {
+        userService.delete(id);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserResponse updateById(@PathVariable Integer id, @RequestBody UserRequest userRequest) {
+        User user = userService.update(id, userMapper.toEntity(userRequest));
+        return userMapper.toResponse(user);
+    }
+
+    @GetMapping(params = {"username", "password"})
+    public UserResponse getByUsernamePassword(@RequestParam("username") String username, @RequestParam("password") String password) {
+        User user = userService.findByUsernamePassword(username, password);
+        return userMapper.toResponse(user);
+    }
+
+    @GetMapping(params = {"email", "password"})
+    public UserResponse getByEmailPassword(@RequestParam("email") String email, @RequestParam("password") String password) {
+        User user = userService.findByEmailPassword(email, password);
+        return userMapper.toResponse(user);
+    }
 }

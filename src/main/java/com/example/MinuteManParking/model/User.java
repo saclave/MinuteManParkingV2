@@ -9,14 +9,14 @@ import javax.persistence.Id;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
-    String firstName;
-    String lastName;
-    String birthdate;
-    String gender;
-    String email;
-    String username;
-    String password;
+    private Integer id;
+    private String firstName;
+    private String lastName;
+    private String birthdate;
+    private String gender;
+    private String email;
+    private String username;
+    private String password;
 
     public User() {
 

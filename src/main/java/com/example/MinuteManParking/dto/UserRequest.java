@@ -1,13 +1,13 @@
 package com.example.MinuteManParking.dto;
 
 public class UserRequest {
-    String firstName;
-    String lastName;
-    String birthdate;
-    String gender;
-    String email;
-    String username;
-    String password;
+    private String firstName;
+    private String lastName;
+    private String birthdate;
+    private String gender;
+    private String email;
+    private String username;
+    private String password;
 
     public UserRequest() {
 
