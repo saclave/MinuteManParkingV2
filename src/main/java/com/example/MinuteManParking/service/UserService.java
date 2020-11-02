@@ -17,6 +17,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    //TODO unique email
     public User create(User user) {
         if(userRepository.findByUsername(user.getUsername()) == null){
             return userRepository.save(user);
@@ -37,6 +38,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    //TODO remove null validat
     public User update(Integer id, User user) {
         User retrievedUser = retrieve(id);
         if(user.getFirstName() != null){
@@ -63,6 +65,7 @@ public class UserService {
         return userRepository.save(retrievedUser);
     }
 
+    //TODO find by username
     public User findByUsernamePassword(String username, String password) {
         return userRepository.findByPassword(password).stream()
                 .filter(user -> user.getId().equals(userRepository.findByUsername(username).getId()))
