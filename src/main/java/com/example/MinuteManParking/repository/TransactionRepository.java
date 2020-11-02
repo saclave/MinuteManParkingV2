@@ -10,5 +10,5 @@ import java.util.List;
 public interface TransactionRepository extends JpaRepository<Transaction, Integer> {
     List<Transaction> findByUserId(Integer userId);
 
-    Transaction findByTicket(Integer ticketId);
+    Transaction findByTicketId(Integer ticketId);
 }

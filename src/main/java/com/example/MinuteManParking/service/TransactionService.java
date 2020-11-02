@@ -43,7 +43,7 @@ public class TransactionService {
         if(ticketId == null){
             throw new TransactionNotFoundException(TICKET_NOT_FOUND);
         }
-        return transactionRepository.findByTicket(ticketId);
+        return transactionRepository.findByTicketId(ticketId);
     }
 
     public void deleteTransaction(Integer id) {

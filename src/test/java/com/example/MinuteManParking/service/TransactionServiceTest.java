@@ -1,6 +1,5 @@
 package com.example.MinuteManParking.service;
 
-import com.example.MinuteManParking.dto.TransactionResponse;
 import com.example.MinuteManParking.model.Transaction;
 import com.example.MinuteManParking.repository.TransactionRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -83,7 +82,7 @@ public class TransactionServiceTest {
         transacition1.setTicketId(69);
 
         //when
-        when(transactionRepository.findByTicket(69)).thenReturn(transacition1);
+        when(transactionRepository.findByTicketId(69)).thenReturn(transacition1);
         Transaction actual = transactionService.getTransactionByTicket(69);
 
         //then
