@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.example.MinuteManParking.mapper.TransactionMapper.TRANSACTION_MAPPER;
+
 @RestController
 @RequestMapping("/transaction")
 public class TransactionController {
     private final TransactionService transactionService;
-    private final TransactionMapper transactionMapper;
 
-    public TransactionController(TransactionService transactionService, TransactionMapper transactionMapper) {
+    public TransactionController(TransactionService transactionService) {
         this.transactionService = transactionService;
-        this.transactionMapper = transactionMapper;
     }
 
     @GetMapping
@@ -28,19 +28,19 @@ public class TransactionController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public TransactionResponse addTodo(@RequestBody TransactionRequest transactionRequest){
-        Transaction transaction = transactionMapper.toEntity(transactionRequest);
-        return transactionMapper.toResponse(transactionService.create(transaction));
+        Transaction transaction = TRANSACTION_MAPPER.toEntity(transactionRequest);
+        return TRANSACTION_MAPPER.toResponse(transactionService.create(transaction));
     }
 
     @GetMapping("/{transaction_id}")
     public TransactionResponse getTodo(@PathVariable("id") Integer id) {
-        return transactionMapper.toResponse(transactionService.getTransaction(id));
+        return TRANSACTION_MAPPER.toResponse(transactionService.getTransaction(id));
     }
 
     @GetMapping(params = "{user_id}")
     public List<TransactionResponse> getAllTransactionsByUser(Integer userId) {
         return transactionService.getAllTransactionsByUser(userId).stream()
-                .map(transactionMapper::toResponse)
+                .map(TRANSACTION_MAPPER::toResponse)
                 .collect(Collectors.toList());
     }
 

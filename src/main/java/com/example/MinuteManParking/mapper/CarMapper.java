@@ -3,22 +3,14 @@ package com.example.MinuteManParking.mapper;
 import com.example.MinuteManParking.dto.CarRequest;
 import com.example.MinuteManParking.dto.CarResponse;
 import com.example.MinuteManParking.model.Car;
-import org.springframework.beans.BeanUtils;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 
-@Component
-public class CarMapper {
+@Mapper
+public interface CarMapper {
+    CarMapper CAR_MAPPER = Mappers.getMapper( CarMapper.class );
 
-    public Car toEntity(CarRequest carRequest) {
-        Car car = new Car();
-        BeanUtils.copyProperties(carRequest, car);
-        return car;
-    }
+    Car toEntity(CarRequest carRequest);
 
-    public CarResponse toResponse(Car car) {
-        CarResponse carResponse = new CarResponse();
-        BeanUtils.copyProperties(car, carResponse);
-        return carResponse;
-    }
-
+    CarResponse toResponse(Car car);
 }

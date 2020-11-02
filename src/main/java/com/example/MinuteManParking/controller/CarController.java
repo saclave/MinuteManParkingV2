@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.example.MinuteManParking.mapper.CarMapper.CAR_MAPPER;
+
 @RestController
 @RequestMapping("/cars")
 public class CarController {
     private final CarService carService;
-    private final CarMapper carMapper;
 
-    public CarController(CarService carService, CarMapper carMapper) {
+    public CarController(CarService carService) {
         this.carService = carService;
-        this.carMapper = carMapper;
     }
 
     @GetMapping
@@ -27,25 +27,25 @@ public class CarController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CarResponse addCar(@RequestBody CarRequest carRequest){
-        Car car = carMapper.toEntity(carRequest);
-        return carMapper.toResponse(carService.create(car));
+        Car car = CAR_MAPPER.toEntity(carRequest);
+        return CAR_MAPPER.toResponse(carService.create(car));
     }
 
     @GetMapping("/{car_id}")
     public CarResponse getCar(@PathVariable("car_id") Integer id) {
-        return carMapper.toResponse(carService.getCar(id));
+        return CAR_MAPPER.toResponse(carService.getCar(id));
     }
 
     @PutMapping("/{car_id}")
     public CarResponse updateTodoStatus(@PathVariable("car_id") Integer id, @RequestBody CarRequest carRequest) {
-        Car car = carMapper.toEntity(carRequest);
+        Car car = CAR_MAPPER.toEntity(carRequest);
         Car updatedCar = carService.updateCarDetails(id, car);
-        return carMapper.toResponse(updatedCar);
+        return CAR_MAPPER.toResponse(updatedCar);
     }
 
     @DeleteMapping("/{car_id}")
-    public void deleteCar(@PathVariable Integer id) {
-        carService.deleteCar(id);
+    public void deleteCar(@PathVariable Integer car_id) {
+        carService.deleteCar(car_id);
     }
 
 }

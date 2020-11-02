@@ -3,20 +3,14 @@ package com.example.MinuteManParking.mapper;
 import com.example.MinuteManParking.dto.TicketRequest;
 import com.example.MinuteManParking.dto.TicketResponse;
 import com.example.MinuteManParking.model.Ticket;
-import org.springframework.beans.BeanUtils;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 
-@Component
-public class TicketMapper {
-    public TicketResponse toResponse(Ticket ticket){
-        TicketResponse ticketResponse = new TicketResponse();
-        BeanUtils.copyProperties(ticket, ticketResponse);
-        return ticketResponse;
-    }
+@Mapper
+public interface TicketMapper {
+    TicketMapper TICKET_MAPPER = Mappers.getMapper(TicketMapper.class);
 
-    public Ticket toEntity(TicketRequest ticketRequest){
-        Ticket ticket = new Ticket();
-        BeanUtils.copyProperties(ticketRequest, ticket);
-        return ticket;
-    }
+    Ticket toEntity(TicketRequest ticketRequest);
+
+    TicketResponse toResponse(Ticket ticket);
 }

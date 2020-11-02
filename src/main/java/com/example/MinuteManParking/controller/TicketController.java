@@ -11,27 +11,27 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.example.MinuteManParking.mapper.TicketMapper.TICKET_MAPPER;
+
 @RestController
 @RequestMapping("/tickets")
 public class TicketController {
     private final TicketService ticketService;
-    private final TicketMapper ticketMapper;
 
-    public TicketController(TicketService ticketService, TicketMapper ticketMapper) {
+    public TicketController(TicketService ticketService) {
         this.ticketService = ticketService;
-        this.ticketMapper = ticketMapper;
     }
 
     @GetMapping
     public List<TicketResponse> getAll() {
         List<Ticket> todoItems = ticketService.getAll();
-        return todoItems.stream().map(ticketMapper::toResponse).collect(Collectors.toList());
+        return todoItems.stream().map(TICKET_MAPPER::toResponse).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
     public TicketResponse getById(@PathVariable Integer id) {
         Ticket ticket = ticketService.retrieve(id);
-        return ticketMapper.toResponse(ticket);
+        return TICKET_MAPPER.toResponse(ticket);
     }
 
     @DeleteMapping("/{id}")
@@ -42,15 +42,15 @@ public class TicketController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public TicketResponse updateById(@PathVariable Integer id, @RequestBody TicketRequest ticketRequest) {
-        Ticket ticket = ticketService.update(id, ticketMapper.toEntity(ticketRequest));
-        return ticketMapper.toResponse(ticket);
+        Ticket ticket = ticketService.update(id, TICKET_MAPPER.toEntity(ticketRequest));
+        return TICKET_MAPPER.toResponse(ticket);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public TicketResponse add(@RequestBody TicketRequest parkingSlotRequest) {
-        Ticket ticket = ticketService.create(ticketMapper.toEntity(parkingSlotRequest));
-        return ticketMapper.toResponse(ticket);
+        Ticket ticket = ticketService.create(TICKET_MAPPER.toEntity(parkingSlotRequest));
+        return TICKET_MAPPER.toResponse(ticket);
     }
 
 }

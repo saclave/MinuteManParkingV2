@@ -13,7 +13,6 @@ import static com.example.MinuteManParking.exceptions.ExceptionConstants.*;
 public class CarService {
     private CarRepository carRepository;
 
-    @Autowired
     public CarService(CarRepository carRepository){
         this.carRepository = carRepository;
     }
