@@ -4,7 +4,9 @@ import com.example.MinuteManParking.dto.TransactionRequest;
 import com.example.MinuteManParking.dto.TransactionResponse;
 import com.example.MinuteManParking.model.Transaction;
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TransactionMapper {
 
     public Transaction toEntity(TransactionRequest transactionRequest) {

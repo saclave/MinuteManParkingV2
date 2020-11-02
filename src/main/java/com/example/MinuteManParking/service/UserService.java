@@ -8,10 +8,8 @@ import com.example.MinuteManParking.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import static com.example.MinuteManParking.exceptions.ExceptionConstants.*;
 
-import static com.example.MinuteManParking.exceptions.EmailAlreadyExistException.EMAIL_ALREADY_EXISTING;
-import static com.example.MinuteManParking.exceptions.UserNotFound.USER_NOT_FOUND;
-import static com.example.MinuteManParking.exceptions.UsernameAlreadyExist.USERNAME_ALREADY_EXISTING;
 
 @Service
 public class UserService {

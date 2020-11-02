@@ -1,13 +1,13 @@
 package com.example.MinuteManParking.service;
 
-import com.example.MinuteManParking.advice.TicketNotFound;
+import com.example.MinuteManParking.exceptions.TicketNotFound;
 import com.example.MinuteManParking.model.Ticket;
 import com.example.MinuteManParking.repository.TicketRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.example.MinuteManParking.advice.TicketNotFound.TICKET_NOT_FOUND;
+import static com.example.MinuteManParking.exceptions.ExceptionConstants.*;
 
 @Service
 public class TicketService {

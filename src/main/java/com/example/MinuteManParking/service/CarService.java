@@ -1,14 +1,13 @@
 package com.example.MinuteManParking.service;
 
-import com.example.MinuteManParking.advice.CarNotFoundException;
+import com.example.MinuteManParking.exceptions.CarNotFoundException;
 import com.example.MinuteManParking.model.Car;
 import com.example.MinuteManParking.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import static com.example.MinuteManParking.advice.CarNotFoundException.CAR_NOT_FOUND;
+import static com.example.MinuteManParking.exceptions.ExceptionConstants.*;
 
 @Service
 public class CarService {

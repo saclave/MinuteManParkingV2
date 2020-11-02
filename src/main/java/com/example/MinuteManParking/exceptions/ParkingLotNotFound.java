@@ -1,7 +1,6 @@
-package com.example.MinuteManParking.advice;
+package com.example.MinuteManParking.exceptions;
 
 public class ParkingLotNotFound extends RuntimeException {
-    public static final String PARKING_LOT_NOT_FOUND = "Parking Lot Not Found";
 
     public ParkingLotNotFound(String message) {
         super(message);

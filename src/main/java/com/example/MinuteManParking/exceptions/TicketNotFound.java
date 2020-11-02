@@ -1,7 +1,6 @@
-package com.example.MinuteManParking.advice;
+package com.example.MinuteManParking.exceptions;
 
 public class TicketNotFound extends RuntimeException {
-    public static final String TICKET_NOT_FOUND = "Ticket Not Found";
 
     public TicketNotFound(String message) {
         super(message);

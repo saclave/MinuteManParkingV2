@@ -1,4 +1,4 @@
-package com.example.MinuteManParking.advice;
+package com.example.MinuteManParking.exceptions;
 
 public class TransactionNotFoundException extends RuntimeException{
     public static final String TRANSACTION_NOT_FOUND = "Transaction Not Found";

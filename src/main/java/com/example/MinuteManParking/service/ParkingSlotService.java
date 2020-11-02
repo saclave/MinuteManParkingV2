@@ -1,13 +1,13 @@
 package com.example.MinuteManParking.service;
 
-import com.example.MinuteManParking.advice.ParkingSlotNotFound;
+import com.example.MinuteManParking.exceptions.ParkingSlotNotFound;
 import com.example.MinuteManParking.model.ParkingSlot;
 import com.example.MinuteManParking.repository.ParkingSlotRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.example.MinuteManParking.advice.ParkingSlotNotFound.PARKING_SLOT_NOT_FOUND;
+import static com.example.MinuteManParking.exceptions.ExceptionConstants.*;
 
 @Service
 public class ParkingSlotService {
