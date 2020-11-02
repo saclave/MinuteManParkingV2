@@ -18,7 +18,7 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
+    //TODO which field is wrong
     public User create(User user) {
         if (isUniqueUsernameAndEmail(user)) {
             return userRepository.save(user);
@@ -30,6 +30,7 @@ public class UserService {
     }
 
     private boolean isUniqueUsernameAndEmail(User user) {
+        //TODO findby username and email or https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation
         return userRepository.findByUsername(user.getUsername()) == null
                 && userRepository.findByEmail(user.getEmail()) == null;
     }

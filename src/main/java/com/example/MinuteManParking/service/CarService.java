@@ -11,6 +11,7 @@ import static com.example.MinuteManParking.exceptions.ExceptionConstants.*;
 
 @Service
 public class CarService {
+    //TODO set final
     private CarRepository carRepository;
 
     public CarService(CarRepository carRepository){
@@ -38,7 +39,7 @@ public class CarService {
         car.setPlateNumber(carRequest.getPlateNumber());
         return carRepository.save(car);
     }
-
+    //TODO exception if not existing
     public void deleteCar(Integer id) {  carRepository.deleteById(id); }
 
 }

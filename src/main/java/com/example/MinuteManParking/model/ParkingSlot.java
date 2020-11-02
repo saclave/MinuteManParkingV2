@@ -12,6 +12,7 @@ public class ParkingSlot {
     private Integer id;
     private Boolean availability;
     private Integer parkingLotId;
+    //TODO rename this
     private String parkingSlotName;
 
     public ParkingSlot() {
