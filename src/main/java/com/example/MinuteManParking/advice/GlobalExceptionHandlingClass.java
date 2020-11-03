@@ -49,5 +49,11 @@ public class GlobalExceptionHandlingClass {
     public ErrorResponse handleTicketNotFoundException(TicketNotFound exception) {
         return new ErrorResponse(exception.getMessage(), HttpStatus.NOT_FOUND.name());
     }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse handleHazardNotFoundException(HazardNotFound exception) {
+        return new ErrorResponse(exception.getMessage(), HttpStatus.NOT_FOUND.name());
+    }
     
 }
