@@ -44,17 +44,7 @@ class HazardServiceTest {
         //then
         assertEquals(expected, actual);
     }
-
-    @Test
-    void should_return_parking_lot_when_create_given_user() {
-        //given
-        Hazard hazard = new Hazard();
-        //when
-        when(hazardRepository.save(hazard)).thenReturn(hazard);
-        //then
-        assertEquals(hazardService.create(hazard), hazard);
-    }
-
+    
     @Test
     void should_remove_parking_lot_when_delete_by_id() {
         //given
@@ -66,19 +56,4 @@ class HazardServiceTest {
         verify(hazardRepository, times(1)).deleteById(hazard.getId());
     }
 
-    @Test
-    void should_return_updated_task_when_update_given_update_details() {
-        //given
-        Hazard old = new Hazard();
-        Hazard expected = new Hazard();
-        old.setLongitude(1.0);
-        expected.setLongitude(2.0);
-
-        when(hazardRepository.findById(old.getId())).thenReturn(Optional.of(old));
-        when(hazardRepository.save(old)).thenReturn(expected);
-        //when
-        Hazard updated = hazardService.update(old.getId(), old);
-        //then
-        assertSame(expected, updated);
-    }
 }
