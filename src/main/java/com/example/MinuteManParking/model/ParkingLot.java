@@ -12,6 +12,7 @@ public class ParkingLot {
     private Double latitude;
     private String address;
     private Double price;
+    private String name;
     @OneToMany(
             fetch = FetchType.LAZY,
             orphanRemoval = true
@@ -69,5 +70,13 @@ public class ParkingLot {
 
     public void setParkingSlotList(List<ParkingSlot> parkingSlotList) {
         this.parkingSlotList = parkingSlotList;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

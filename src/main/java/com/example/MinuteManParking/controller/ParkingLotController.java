@@ -25,20 +25,20 @@ public class ParkingLotController {
     @GetMapping
     public List<ParkingLotResponse> getAll() {
         List<ParkingLot> parkingLots = parkingLotService.getAll();
-        return parkingLots.stream().map(PARKING_LOT_MAPPER::toResponse).collect(Collectors.toList());
+        return parkingLots.stream().map(this::getResponseWithAvailableAndCapacity).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
     public ParkingLotResponse getById(@PathVariable Integer id) {
         ParkingLot parkingLot = parkingLotService.retrieve(id);
-        return PARKING_LOT_MAPPER.toResponse(parkingLot);
+        return getResponseWithAvailableAndCapacity(parkingLot);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ParkingLotResponse add(@RequestBody ParkingLotRequest parkingLotRequest) {
         ParkingLot parkingLot = parkingLotService.create(PARKING_LOT_MAPPER.toEntity(parkingLotRequest));
-        return PARKING_LOT_MAPPER.toResponse(parkingLot);
+        return getResponseWithAvailableAndCapacity(parkingLot);
     }
 
     @DeleteMapping("/{id}")
@@ -50,11 +50,18 @@ public class ParkingLotController {
     @ResponseStatus(HttpStatus.CREATED)
     public ParkingLotResponse updateById(@PathVariable Integer id, @RequestBody ParkingLotRequest parkingLotRequest) {
         ParkingLot parkingLot = parkingLotService.update(id, PARKING_LOT_MAPPER.toEntity(parkingLotRequest));
-        return PARKING_LOT_MAPPER.toResponse(parkingLot);
+        return getResponseWithAvailableAndCapacity(parkingLot);
     }
 
     @GetMapping("/{id}/slotList")
     public List<ParkingSlot> getParkingSlotList(@PathVariable Integer id) {
         return parkingLotService.getParkingSlotsByParkingLot(id);
+    }
+
+    public ParkingLotResponse getResponseWithAvailableAndCapacity(ParkingLot parkingLot){
+        ParkingLotResponse parkingLotResponse = PARKING_LOT_MAPPER.toResponse(parkingLot);
+        parkingLotResponse.setCapacity(parkingLot.getParkingSlotList().size());
+        parkingLotResponse.setAvailable((int) parkingLot.getParkingSlotList().stream().filter(ParkingSlot::getAvailability).count());
+        return parkingLotResponse;
     }
 }
