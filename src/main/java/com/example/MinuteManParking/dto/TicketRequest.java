@@ -1,30 +1,23 @@
 package com.example.MinuteManParking.dto;
 
 public class TicketRequest {
-    private Integer slotId;
+    private Integer parkingSlotId;
     private Integer carId;
     private String timeIn;
     private String timeOut;
-    private String ticketName;
+    private String name;
+    private Double amount;
 
     public TicketRequest() {
 
     }
 
-    public TicketRequest(Integer slotId, Integer carId, String timeIn, String timeOut, String ticketName) {
-        this.slotId = slotId;
-        this.carId = carId;
-        this.timeIn = timeIn;
-        this.timeOut = timeOut;
-        this.ticketName = ticketName;
+    public Integer getParkingSlotId() {
+        return parkingSlotId;
     }
 
-    public Integer getSlotId() {
-        return slotId;
-    }
-
-    public void setSlotId(Integer slotId) {
-        this.slotId = slotId;
+    public void setParkingSlotId(Integer parkingSlotId) {
+        this.parkingSlotId = parkingSlotId;
     }
 
     public Integer getCarId() {
@@ -51,11 +44,19 @@ public class TicketRequest {
         this.timeOut = timeOut;
     }
 
-    public String getTicketName() {
-        return ticketName;
+    public String getName() {
+        return name;
     }
 
-    public void setTicketName(String ticketName) {
-        this.ticketName = ticketName;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 }

@@ -5,16 +5,10 @@ public class ParkingLotRequest {
     private Double latitude;
     private String address;
     private Double price;
+    private String name;
 
     public ParkingLotRequest() {
 
-    }
-
-    public ParkingLotRequest(Double longitude, Double latitude, String address, Double price) {
-        this.longitude = longitude;
-        this.latitude = latitude;
-        this.address = address;
-        this.price = price;
     }
 
     public Double getLongitude() {
@@ -47,5 +41,13 @@ public class ParkingLotRequest {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

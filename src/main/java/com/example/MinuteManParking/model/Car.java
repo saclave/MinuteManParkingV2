@@ -1,31 +1,33 @@
 package com.example.MinuteManParking.model;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer carId;
+    private Integer id;
     private Integer userId;
     private String plateNumber;
     private String color;
     private String brand;
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+    )
+    @JoinColumn(name = "carId")
+    private List<Ticket> ticketList;
 
-
-    public Car() { }
-
-    public Car(String plateNumber, String color, String brand) {
-        this.plateNumber = plateNumber;
-        this.color = color;
-        this.brand = brand;
+    public Car() {
     }
 
-    public Integer getCarId() {
-        return carId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setCarId(Integer carId) {
-        this.carId = carId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getUserId() {
@@ -58,5 +60,13 @@ public class Car {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public List<Ticket> getTicketList() {
+        return ticketList;
+    }
+
+    public void setTicketList(List<Ticket> ticketList) {
+        this.ticketList = ticketList;
     }
 }

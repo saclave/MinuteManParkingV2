@@ -28,7 +28,7 @@ public class CarServiceTest {
         //given
         //when
         when(carRepository.findAll()).thenReturn(asList(new Car(), new Car()));
-        List<Car> carRequest = carService.getAllCars();
+        List<Car> carRequest = carService.getAll();
         //then
         assertEquals(2, carRequest.size());
     }
@@ -37,9 +37,10 @@ public class CarServiceTest {
     void should_return_created_cars_when_given_a_cars_request() {
         //given
         //when
-        Car carRequest = new Car("ABC", "blue", "Toyota");
-        when(carRepository.save(carRequest)).thenReturn(carRequest);
-        Car actual = carService.create(carRequest);
+        Car car = new Car();
+        car.setPlateNumber("ABC");
+        when(carRepository.save(car)).thenReturn(car);
+        Car actual = carService.create(car);
 
         //then
         assertEquals("ABC", actual.getPlateNumber());
@@ -48,15 +49,15 @@ public class CarServiceTest {
     @Test
     void should_return_updated_cars_info_when_given_an_cars_request() {
         //given
-        Car carRequest = new Car("ABC", "blue", "Toyota");
-        carRequest.setCarId(1);
-        Car expectedCar = new Car("ABC", "blue", "Honda");
-        expectedCar.setCarId(1);
+        Car carRequest = new Car();
+        carRequest.setId(1);
+        Car expectedCar = new Car();
+        expectedCar.setId(1);
         when(carRepository.findById(1)).thenReturn(Optional.of(carRequest));
         when(carRepository.save(carRequest)).thenReturn(expectedCar);
 
         //when
-        Car updatedCar = carService.updateCarDetails(carRequest.getCarId(), expectedCar);
+        Car updatedCar = carService.update(carRequest.getId(), expectedCar);
 
         //then
         assertSame(expectedCar, updatedCar);
@@ -65,11 +66,12 @@ public class CarServiceTest {
     @Test
     void should_remove_cars_when_delete_given_id(){
         //given
-        Car todoItemRequest = new Car("ABC", "blue", "Toyota");
-        todoItemRequest.setCarId(69);
+        Car car = new Car();
+        car.setId(69);
 
         //when
-        carService.deleteCar(todoItemRequest.getCarId());
+        when(carRepository.findById(car.getId())).thenReturn(Optional.of(car));
+        carService.delete(car.getId());
 
         //then
         verify(carRepository, times(1)).deleteById(69);

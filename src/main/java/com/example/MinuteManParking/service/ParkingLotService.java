@@ -2,6 +2,7 @@ package com.example.MinuteManParking.service;
 
 import com.example.MinuteManParking.exceptions.ParkingLotNotFound;
 import com.example.MinuteManParking.model.ParkingLot;
+import com.example.MinuteManParking.model.ParkingSlot;
 import com.example.MinuteManParking.repository.ParkingLotRepository;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,7 @@ public class ParkingLotService {
     }
 
     public void delete(Integer id) {
+        retrieve(id);
         parkingLotRepository.deleteById(id);
     }
 
@@ -40,6 +42,13 @@ public class ParkingLotService {
         retrievedParkingLot.setLatitude(parkingLot.getLatitude());
         retrievedParkingLot.setLongitude(parkingLot.getLongitude());
         retrievedParkingLot.setPrice(parkingLot.getPrice());
+        retrievedParkingLot.setName(parkingLot.getName());
         return parkingLotRepository.save(retrievedParkingLot);
+    }
+
+    public List<ParkingSlot> getParkingSlotsByParkingLot(Integer id) {
+        return parkingLotRepository.findById(id)
+                .map(ParkingLot::getParkingSlotList)
+                .orElseThrow(() -> new ParkingLotNotFound(PARKING_LOT_NOT_FOUND));
     }
 }

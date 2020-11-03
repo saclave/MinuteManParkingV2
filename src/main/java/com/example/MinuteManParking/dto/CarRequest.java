@@ -1,16 +1,16 @@
 package com.example.MinuteManParking.dto;
 
+import com.example.MinuteManParking.model.Car;
+
+import java.util.List;
+
 public class CarRequest {
+    private Integer userId;
     private String plateNumber;
     private String color;
     private String brand;
 
-    public CarRequest() { }
-
-    public CarRequest(String plateNumber, String color, String brand) {
-        this.plateNumber = plateNumber;
-        this.color = color;
-        this.brand = brand;
+    public CarRequest() {
     }
 
     public String getPlateNumber() {
@@ -35,5 +35,13 @@ public class CarRequest {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

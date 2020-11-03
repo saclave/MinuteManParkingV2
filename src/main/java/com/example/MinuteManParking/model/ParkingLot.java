@@ -1,37 +1,35 @@
 package com.example.MinuteManParking.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class ParkingLot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer parkingLotId;
+    private Integer id;
     private Double longitude;
     private Double latitude;
     private String address;
     private Double price;
+    private String name;
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+    )
+    @JoinColumn(name = "parkingLotId")
+    private List<ParkingSlot> parkingSlotList;
 
     public ParkingLot() {
 
     }
 
-    public ParkingLot(Double longitude, Double latitude, String address, Double price) {
-        this.longitude = longitude;
-        this.latitude = latitude;
-        this.address = address;
-        this.price = price;
+    public Integer getId() {
+        return id;
     }
 
-    public Integer getParkingLotId() {
-        return parkingLotId;
-    }
-
-    public void setParkingLotId(Integer parkingLotId) {
-        this.parkingLotId = parkingLotId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Double getLongitude() {
@@ -64,5 +62,21 @@ public class ParkingLot {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public List<ParkingSlot> getParkingSlotList() {
+        return parkingSlotList;
+    }
+
+    public void setParkingSlotList(List<ParkingSlot> parkingSlotList) {
+        this.parkingSlotList = parkingSlotList;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

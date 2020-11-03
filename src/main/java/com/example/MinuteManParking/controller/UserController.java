@@ -2,6 +2,8 @@ package com.example.MinuteManParking.controller;
 
 import com.example.MinuteManParking.dto.UserRequest;
 import com.example.MinuteManParking.dto.UserResponse;
+import com.example.MinuteManParking.model.Car;
+import com.example.MinuteManParking.model.Ticket;
 import com.example.MinuteManParking.model.User;
 import com.example.MinuteManParking.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -54,13 +56,17 @@ public class UserController {
 
     @GetMapping(params = {"username", "password"})
     public UserResponse getByUsernamePassword(@RequestParam("username") String username, @RequestParam("password") String password) {
-        User user = userService.findByUsernamePassword(username, password);
+        User user = userService.findByUsernameAndPassword(username, password);
         return USER_MAPPER.toResponse(user);
     }
 
-    @GetMapping(params = {"email", "password"})
-    public UserResponse getByEmailPassword(@RequestParam("email") String email, @RequestParam("password") String password) {
-        User user = userService.findByEmailPassword(email, password);
-        return USER_MAPPER.toResponse(user);
+    @GetMapping("/{id}/carList")
+    public List<Car> getCarList(@PathVariable Integer id) {
+        return userService.getCarsByUserId(id);
+    }
+
+    @GetMapping("/{id}/ticketList")
+    public List<Ticket> getTicketList(@PathVariable Integer id) {
+        return userService.getTicketsByUserId(id);
     }
 }

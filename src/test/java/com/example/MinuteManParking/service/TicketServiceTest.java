@@ -39,8 +39,8 @@ public class TicketServiceTest {
         //given
         Ticket expected = new Ticket();
         //when
-        when(ticketRepository.findById(expected.getTicketId())).thenReturn(java.util.Optional.of(expected));
-        Ticket actual = ticketService.retrieve(expected.getTicketId());
+        when(ticketRepository.findById(expected.getId())).thenReturn(java.util.Optional.of(expected));
+        Ticket actual = ticketService.retrieve(expected.getId());
         //then
         assertEquals(expected, actual);
     }
@@ -60,21 +60,24 @@ public class TicketServiceTest {
         //given
         Ticket ticket = new Ticket();
         //when
-        ticketService.delete(ticket.getTicketId());
+        when(ticketRepository.findById(ticket.getId())).thenReturn(Optional.of(ticket));
+        ticketService.delete(ticket.getId());
         //then
-        verify(ticketRepository, times(1)).deleteById(ticket.getTicketId());
+        verify(ticketRepository, times(1)).deleteById(ticket.getId());
     }
 
     @Test
     void should_return_updated_parking_slot_when_update_given_update_details() {
         //given
-        Ticket old = new Ticket(1, 1, "1", "1", "1");
-        Ticket expected = new Ticket(2, 2, "2", "2", "2");
+        Ticket old = new Ticket();
+        Ticket expected = new Ticket();
+        old.setTimeOut("1");
+        expected.setTimeOut("2");
 
-        when(ticketRepository.findById(old.getTicketId())).thenReturn(Optional.of(old));
+        when(ticketRepository.findById(old.getId())).thenReturn(Optional.of(old));
         when(ticketRepository.save(old)).thenReturn(expected);
         //when
-        Ticket updated = ticketService.update(old.getTicketId(), old);
+        Ticket updated = ticketService.update(old.getId(), old);
         //then
         assertSame(expected, updated);
     }

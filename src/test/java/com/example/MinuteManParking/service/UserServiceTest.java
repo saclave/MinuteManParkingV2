@@ -61,6 +61,7 @@ class UserServiceTest {
         //given
         User user = new User();
         //when
+        when(userRepository.findById(user.getId())).thenReturn(java.util.Optional.of(user));
         userService.delete(user.getId());
         //then
         verify(userRepository, times(1)).deleteById(user.getId());
@@ -69,8 +70,10 @@ class UserServiceTest {
     @Test
     void should_return_updated_task_when_update_given_update_details() {
         //given
-        User old = new User("old", "old", "old", "old", "old", "old", "old");
-        User expected = new User("expected", "expected", "expected", "expected", "expected", "expected", "expected");
+        User old = new User();
+        User expected = new User();
+        old.setUsername("1");
+        expected.setUsername("2");
 
         when(userRepository.findById(old.getId())).thenReturn(Optional.of(old));
         when(userRepository.save(old)).thenReturn(expected);
@@ -80,33 +83,4 @@ class UserServiceTest {
         assertSame(expected, updated);
     }
 
-    @Test
-    void should_return_user_when_get_by_username_and_password() {
-        //given
-        User user = new User("old", "old", "old", "old", "old", "old", "old");
-        List<User> users = new ArrayList<>();
-        users.add(user);
-
-        when(userRepository.findByUsername(user.getUsername())).thenReturn(user);
-
-        //when
-        User updated = userService.findByUsernamePassword(user.getUsername(), user.getPassword());
-        //then
-        assertSame(user, updated);
-    }
-
-    @Test
-    void should_return_user_when_get_by_email_and_password() {
-        //given
-        User user = new User("old", "old", "old", "old", "old", "old", "old");
-        List<User> users = new ArrayList<>();
-        users.add(user);
-
-        when(userRepository.findByEmail(user.getEmail())).thenReturn(user);
-
-        //when
-        User updated = userService.findByEmailPassword(user.getEmail(), user.getPassword());
-        //then
-        assertSame(user, updated);
-    }
 }

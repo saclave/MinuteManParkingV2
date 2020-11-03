@@ -2,8 +2,8 @@ package com.example.MinuteManParking.controller;
 
 import com.example.MinuteManParking.dto.CarRequest;
 import com.example.MinuteManParking.dto.CarResponse;
-import com.example.MinuteManParking.mapper.CarMapper;
 import com.example.MinuteManParking.model.Car;
+import com.example.MinuteManParking.model.Ticket;
 import com.example.MinuteManParking.service.CarService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +22,7 @@ public class CarController {
     }
 
     @GetMapping
-    public List<Car> getAll(){ return carService.getAllCars(); }
+    public List<Car> getAll(){ return carService.getAll(); }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -33,19 +33,24 @@ public class CarController {
 
     @GetMapping("/{car_id}")
     public CarResponse getCar(@PathVariable("car_id") Integer id) {
-        return CAR_MAPPER.toResponse(carService.getCar(id));
+        return CAR_MAPPER.toResponse(carService.retrieve(id));
     }
 
-    @PutMapping("/{car_id}")
-    public CarResponse updateTodoStatus(@PathVariable("car_id") Integer id, @RequestBody CarRequest carRequest) {
-        Car car = CAR_MAPPER.toEntity(carRequest);
-        Car updatedCar = carService.updateCarDetails(id, car);
-        return CAR_MAPPER.toResponse(updatedCar);
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public CarResponse update(@PathVariable Integer id, @RequestBody CarRequest carRequest) {
+        Car car = carService.update(id, CAR_MAPPER.toEntity(carRequest));
+        return CAR_MAPPER.toResponse(car);
     }
 
     @DeleteMapping("/{car_id}")
     public void deleteCar(@PathVariable Integer car_id) {
-        carService.deleteCar(car_id);
+        carService.delete(car_id);
+    }
+
+    @GetMapping("/{id}/ticketList")
+    public List<Ticket> getTicketList(@PathVariable Integer id) {
+        return carService.getTicketByCar(id);
     }
 
 }

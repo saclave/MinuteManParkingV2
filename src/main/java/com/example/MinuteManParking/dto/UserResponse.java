@@ -1,5 +1,9 @@
 package com.example.MinuteManParking.dto;
 
+import com.example.MinuteManParking.model.Car;
+
+import java.util.List;
+
 public class UserResponse {
     private Integer id;
     private String firstName;
@@ -9,20 +13,11 @@ public class UserResponse {
     private String email;
     private String username;
     private String password;
+    private Double cash;
+    private List<Car> carList;
 
     public UserResponse() {
 
-    }
-
-    public UserResponse(Integer id, String firstName, String lastName, String birthdate, String gender, String email, String username, String password) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthdate = birthdate;
-        this.gender = gender;
-        this.email = email;
-        this.username = username;
-        this.password = password;
     }
 
     public Integer getId() {
@@ -87,5 +82,21 @@ public class UserResponse {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Double getCash() {
+        return cash;
+    }
+
+    public void setCash(Double cash) {
+        this.cash = cash;
+    }
+
+    public List<Car> getCarList() {
+        return carList;
+    }
+
+    public void setCarList(List<Car> carList) {
+        this.carList = carList;
     }
 }
