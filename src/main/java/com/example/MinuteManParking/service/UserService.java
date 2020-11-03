@@ -1,6 +1,8 @@
 package com.example.MinuteManParking.service;
 
+import com.example.MinuteManParking.dto.UserCreationErrorResponse;
 import com.example.MinuteManParking.exceptions.EmailAlreadyExistException;
+import com.example.MinuteManParking.exceptions.RegistrationException;
 import com.example.MinuteManParking.exceptions.UserNotFound;
 import com.example.MinuteManParking.exceptions.UsernameAlreadyExist;
 import com.example.MinuteManParking.model.Car;
@@ -25,11 +27,15 @@ public class UserService {
     }
 
     public User create(User user) {
+        UserCreationErrorResponse userCreationErrorResponse = new UserCreationErrorResponse();
         if (userRepository.existsUserByEmail(user.getEmail())) {
-            throw new EmailAlreadyExistException(EMAIL_ALREADY_EXISTING);
+            userCreationErrorResponse.setEmailExist(true);
         }
         if (userRepository.existsUserByUsername(user.getUsername())) {
-            throw new UsernameAlreadyExist(USERNAME_ALREADY_EXISTING);
+            userCreationErrorResponse.setUsernameExist(true);
+        }
+        if(userCreationErrorResponse.isEmailExist() || userCreationErrorResponse.isUsernameExist()) {
+              throw new RegistrationException(userCreationErrorResponse);
         }
         return userRepository.save(user);
     }

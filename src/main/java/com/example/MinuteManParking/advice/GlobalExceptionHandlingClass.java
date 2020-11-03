@@ -1,5 +1,6 @@
 package com.example.MinuteManParking.advice;
 
+import com.example.MinuteManParking.dto.UserCreationErrorResponse;
 import com.example.MinuteManParking.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -16,14 +17,8 @@ public class GlobalExceptionHandlingClass {
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse handleUsernameAlreadyExistingException(UsernameAlreadyExist exception) {
-        return new ErrorResponse(exception.getMessage(), HttpStatus.BAD_REQUEST.name());
-    }
-
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse handleEmailAlreadyExistingException(EmailAlreadyExistException exception) {
-        return new ErrorResponse(exception.getMessage(), HttpStatus.BAD_REQUEST.name());
+    public UserCreationErrorResponse handleUsernameAlreadyExistingException(RegistrationException exception) {
+        return exception.getUserCreationErrorResponse();
     }
 
     @ExceptionHandler
@@ -55,5 +50,4 @@ public class GlobalExceptionHandlingClass {
     public ErrorResponse handleHazardNotFoundException(HazardNotFound exception) {
         return new ErrorResponse(exception.getMessage(), HttpStatus.NOT_FOUND.name());
     }
-    
 }
