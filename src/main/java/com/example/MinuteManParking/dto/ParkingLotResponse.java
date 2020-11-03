@@ -10,6 +10,9 @@ public class ParkingLotResponse {
     private Double latitude;
     private String address;
     private Double price;
+    private String name;
+    private Integer available;
+    private Integer capacity;
     private List<ParkingSlot> parkingSlotList;
 
     public ParkingLotResponse() {
@@ -62,5 +65,29 @@ public class ParkingLotResponse {
 
     public void setParkingSlotList(List<ParkingSlot> parkingSlotList) {
         this.parkingSlotList = parkingSlotList;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Integer available) {
+        this.available = available;
+    }
+
+    public Integer getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
     }
 }

@@ -42,6 +42,7 @@ public class ParkingLotService {
         retrievedParkingLot.setLatitude(parkingLot.getLatitude());
         retrievedParkingLot.setLongitude(parkingLot.getLongitude());
         retrievedParkingLot.setPrice(parkingLot.getPrice());
+        retrievedParkingLot.setName(parkingLot.getName());
         return parkingLotRepository.save(retrievedParkingLot);
     }
 
