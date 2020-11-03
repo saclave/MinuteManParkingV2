@@ -58,10 +58,15 @@ public class ParkingLotController {
         return parkingLotService.getParkingSlotsByParkingLot(id);
     }
 
-    public ParkingLotResponse getResponseWithAvailableAndCapacity(ParkingLot parkingLot){
+    private ParkingLotResponse getResponseWithAvailableAndCapacity(ParkingLot parkingLot){
         ParkingLotResponse parkingLotResponse = PARKING_LOT_MAPPER.toResponse(parkingLot);
-        parkingLotResponse.setCapacity(parkingLot.getParkingSlotList().size());
-        parkingLotResponse.setAvailable((int) parkingLot.getParkingSlotList().stream().filter(ParkingSlot::getAvailability).count());
+        if(parkingLot.getParkingSlotList() == null) {
+            parkingLotResponse.setCapacity(0);
+            parkingLotResponse.setAvailable(0);
+        } else {
+            parkingLotResponse.setCapacity(parkingLot.getParkingSlotList().size());
+            parkingLotResponse.setAvailable((int) parkingLot.getParkingSlotList().stream().filter(ParkingSlot::getAvailability).count());
+        }
         return parkingLotResponse;
     }
 }
