@@ -24,8 +24,8 @@ public class ParkingSlotController {
 
     @GetMapping
     public List<ParkingSlotResponse> getAll() {
-        List<ParkingSlot> todoItems = parkingSlotService.getAll();
-        return todoItems.stream().map(PARKING_SLOT_MAPPER::toResponse).collect(Collectors.toList());
+        List<ParkingSlot> parkingSlots = parkingSlotService.getAll();
+        return parkingSlots.stream().map(PARKING_SLOT_MAPPER::toResponse).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")

@@ -8,5 +8,5 @@ public class ExceptionConstants {
     public static final String TICKET_NOT_FOUND = "Ticket Not Found";
     public static final String USERNAME_ALREADY_EXISTING = "Username Already Existing";
     public static final String USER_NOT_FOUND = "User Not Found";
-
+    public static final String HAZARD_NOT_FOUND = "Hazard Not Found";
 }
