@@ -45,7 +45,7 @@ public class TicketService {
                 .orElse(null);
 
         ticket.setName(generateTicketString(Objects.requireNonNull(parkingLot).getName()) + "_"
-                + parkingSlot.getId() + "-" + ticket.getId());
+                + parkingSlot.getName() + "-" + ticket.getId());
 
         return ticketRepository.save(ticket);
     }

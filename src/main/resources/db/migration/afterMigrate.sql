@@ -45,4 +45,15 @@ insert into parking_slot(ID,AVAILABILITY,NAME,PARKING_LOT_ID) values (30,true,'B
 insert into parking_slot(ID,AVAILABILITY,NAME,PARKING_LOT_ID) values (31,true,'A1',6);
 insert into parking_slot(ID,AVAILABILITY,NAME,PARKING_LOT_ID) values (32,false,'B1',7);
 
+insert into hazard(ID, TYPE, LONGITUDE, LATITUDE, ADDRESS) values (1, 'TRAFFIC', 120.9884, 14.5329, 'Pasay');
+insert into hazard(ID, TYPE, LONGITUDE, LATITUDE, ADDRESS) values (2, 'STOP', 120.9886, 14.5317, 'Pasay');
+insert into hazard(ID, TYPE, LONGITUDE, LATITUDE, ADDRESS) values (3, 'TOWAWAY', 120.9848, 14.5354, 'Pasay');
+insert into hazard(ID, TYPE, LONGITUDE, LATITUDE, ADDRESS) values (4, 'TOWAWAY', 120.9843, 14.5373, 'Pasay');
+insert into hazard(ID, TYPE, LONGITUDE, LATITUDE, ADDRESS) values (5, 'ROUNDABOUT', 120.9843, 14.5332, 'Pasay');
+
+insert into hazard(ID, TYPE, LONGITUDE, LATITUDE, ADDRESS) values (6, 'PARKING', 120.9855, 14.5311, 'Pasay');
+insert into hazard(ID, TYPE, LONGITUDE, LATITUDE, ADDRESS) values (7, 'PARKING', 120.9863, 14.5311, 'Pasay');
+
+
+
 
