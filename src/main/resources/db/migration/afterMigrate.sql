@@ -4,13 +4,13 @@ delete from parking_slot;
 delete from ticket;
 delete from user;
 
-insert into parking_lot(ID,LONGITUDE,LATITUDE,NAME,ADDRESS,PRICE, IMG_SRC) values (1,120.9862,14.5352,'Parkwise','Sunrise Drive Cor Edsa Extension Moa Complex, Pasay, 1300 Metro Manila',100, 'https://images.summitmedia-digital.com/topgear/images/2019/08/23/parking-lot-parking-area-1566554056.jpg');
-insert into parking_lot(ID,LONGITUDE,LATITUDE,NAME,ADDRESS,PRICE, IMG_SRC) values (2,120.9843,14.5323,'Mall of Asia Arena','Mall of Asia Complex, J.W. Diokno Blvd, Pasay, 1300 Metro Manila',110, 'https://sportsmatik.com/uploads/wiki-venues/Mall-of-Asia-Arena_1494308140_87564.jpg');
-insert into parking_lot(ID,LONGITUDE,LATITUDE,NAME,ADDRESS,PRICE, IMG_SRC) values (3,120.9828,14.5373,'SM Mall of Asia North Parking', 'Sunset Ave, Pasay, Metro Manila',120, 'https://images.summitmedia-digital.com/sap/images/2019/10/25/batch--1190047-1571983229.jpg');
-insert into parking_lot(ID,LONGITUDE,LATITUDE,NAME,ADDRESS,PRICE, IMG_SRC) values (4,120.9827,14.5310,'MAAX Parking Bldg.','Pasay, Metro Manila',130, 'https://mapio.net/images-p/63403215.jpg');
-insert into parking_lot(ID,LONGITUDE,LATITUDE,NAME,ADDRESS,PRICE, IMG_SRC) values (5,120.9809,14.5318,'S Maison','Marina Way Seaside Boulevard Mall of Asia Complex, Pasay, 1300 Metro Manila',140, 'https://images.summitmedia-digital.com/preview/images/2017/06/19/Snm.jpg');
-insert into parking_lot(ID,LONGITUDE,LATITUDE,NAME,ADDRESS,PRICE, IMG_SRC) values (6,120.9817,14.5333,'SM Mall of Asia South Parking','Pasay, Metro Manila',150, 'https://images.summitmedia-digital.com/spotph/images/2019/12/18/pitx-parking-1-1576663789.jpg');
-insert into parking_lot(ID,LONGITUDE,LATITUDE,NAME,ADDRESS,PRICE, IMG_SRC) values (7,120.9817,14.5327,'SMX Convention Center Manila','Mall of Asia Complex, Seashell Ln, Pasay, 1300 Metro Manila',160, 'https://www.terrapinn.com/conference/retail-world-philippines/Img/smxvenueimage.jpg');
+insert into parking_lot(ID,LONGITUDE,LATITUDE,NAME,ADDRESS, CITY, PRICE, IMG_SRC) values (1,120.9862,14.5352,'Parkwise','Sunrise Drive Cor Edsa Extension Moa Complex, Pasay, 1300 Metro Manila', 'Pasay', 100, 'https://images.summitmedia-digital.com/topgear/images/2019/08/23/parking-lot-parking-area-1566554056.jpg');
+insert into parking_lot(ID,LONGITUDE,LATITUDE,NAME,ADDRESS, CITY, PRICE, IMG_SRC) values (2,120.9843,14.5323,'Mall of Asia Arena','Mall of Asia Complex, J.W. Diokno Blvd, Pasay, 1300 Metro Manila', 'Pasay', 110, 'https://sportsmatik.com/uploads/wiki-venues/Mall-of-Asia-Arena_1494308140_87564.jpg');
+insert into parking_lot(ID,LONGITUDE,LATITUDE,NAME,ADDRESS, CITY, PRICE, IMG_SRC) values (3,120.9828,14.5373,'SM Mall of Asia North Parking', 'Sunset Ave, Pasay, Metro Manila', 'Pasay', 120, 'https://images.summitmedia-digital.com/sap/images/2019/10/25/batch--1190047-1571983229.jpg');
+insert into parking_lot(ID,LONGITUDE,LATITUDE,NAME,ADDRESS, CITY, PRICE, IMG_SRC) values (4,120.9827,14.5310,'MAAX Parking Bldg.','Pasay, Metro Manila', 'Pasay', 130, 'https://mapio.net/images-p/63403215.jpg');
+insert into parking_lot(ID,LONGITUDE,LATITUDE,NAME,ADDRESS, CITY, PRICE, IMG_SRC) values (5,120.9809,14.5318,'S Maison','Marina Way Seaside Boulevard Mall of Asia Complex, Pasay, 1300 Metro Manila', 'Pasay', 140, 'https://images.summitmedia-digital.com/preview/images/2017/06/19/Snm.jpg');
+insert into parking_lot(ID,LONGITUDE,LATITUDE,NAME,ADDRESS, CITY, PRICE, IMG_SRC) values (6,120.9817,14.5333,'SM Mall of Asia South Parking','Pasay, Metro Manila', 'Pasay', 150, 'https://images.summitmedia-digital.com/spotph/images/2019/12/18/pitx-parking-1-1576663789.jpg');
+insert into parking_lot(ID,LONGITUDE,LATITUDE,NAME,ADDRESS, CITY, PRICE, IMG_SRC) values (7,120.9817,14.5327,'SMX Convention Center Manila','Mall of Asia Complex, Seashell Ln, Pasay, 1300 Metro Manila', 'Pasay', 160, 'https://www.terrapinn.com/conference/retail-world-philippines/Img/smxvenueimage.jpg');
 
 insert into parking_slot(ID,AVAILABILITY,NAME,PARKING_LOT_ID) values (1,false,'A1',1);
 insert into parking_slot(ID,AVAILABILITY,NAME,PARKING_LOT_ID) values (2,true,'A2',1);

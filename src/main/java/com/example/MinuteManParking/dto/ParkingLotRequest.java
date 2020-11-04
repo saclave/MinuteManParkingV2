@@ -8,6 +8,8 @@ public class ParkingLotRequest {
     private String name;
     private String img_src;
 
+    private String city;
+
     public ParkingLotRequest() {
 
     }
@@ -55,5 +57,10 @@ public class ParkingLotRequest {
     public String getImgSrc() { return img_src; }
 
     public void setImgSrc(String img_src) { this.img_src = img_src; }
+
+
+    public String getCity() { return city; }
+
+    public void setCity(String city) { this.city = city; }
 
 }
