@@ -1,6 +1,10 @@
 package com.example.MinuteManParking.service;
 
+import com.example.MinuteManParking.model.ParkingLot;
+import com.example.MinuteManParking.model.ParkingSlot;
 import com.example.MinuteManParking.model.Ticket;
+import com.example.MinuteManParking.repository.ParkingLotRepository;
+import com.example.MinuteManParking.repository.ParkingSlotRepository;
 import com.example.MinuteManParking.repository.TicketRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,12 +19,16 @@ import static org.mockito.Mockito.*;
 
 public class TicketServiceTest {
     private TicketRepository ticketRepository;
+    private ParkingLotRepository parkingLotRepository;
+    private ParkingSlotRepository parkingSlotRepository;
     private TicketService ticketService;
 
     @BeforeEach
     void setUp() {
         ticketRepository = mock(TicketRepository.class);
-        ticketService = new TicketService(ticketRepository);
+        parkingLotRepository = mock(ParkingLotRepository.class);
+        parkingSlotRepository = mock(ParkingSlotRepository.class);
+        ticketService = new TicketService(ticketRepository, parkingSlotRepository, parkingLotRepository);
     }
 
     @Test
@@ -48,11 +56,26 @@ public class TicketServiceTest {
     @Test
     void should_return_ticket_when_create_given_user() {
         //given
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.setId(123);
+        parkingLot.setName("mall of asia");
+
+        ParkingSlot parkingSlot = new ParkingSlot();
+        parkingSlot.setId(123);
+        parkingSlot.setParkingLotId(123);
+
         Ticket ticket = new Ticket();
+        ticket.setId(69);
+        ticket.setParkingSlotId(123);
+
+        when(parkingSlotRepository.findById(anyInt())).thenReturn(Optional.of(parkingSlot));
+        when(parkingLotRepository.findById(anyInt())).thenReturn(Optional.of(parkingLot));
         //when
         when(ticketRepository.save(ticket)).thenReturn(ticket);
+        Ticket actual = ticketService.create(ticket);
         //then
-        assertEquals(ticketService.create(ticket), ticket);
+        assertEquals(actual, ticket);
+        assertEquals(actual.getName(), "MOA_123-69");
     }
 
     @Test
