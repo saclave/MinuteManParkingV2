@@ -1,8 +1,8 @@
 package com.example.MinuteManParking.service;
 
-import com.example.MinuteManParking.exceptions.EmailAlreadyExistException;
+import com.example.MinuteManParking.dto.UserCreationErrorResponse;
+import com.example.MinuteManParking.exceptions.RegistrationException;
 import com.example.MinuteManParking.exceptions.UserNotFound;
-import com.example.MinuteManParking.exceptions.UsernameAlreadyExist;
 import com.example.MinuteManParking.model.Car;
 import com.example.MinuteManParking.model.Ticket;
 import com.example.MinuteManParking.model.User;
@@ -25,12 +25,7 @@ public class UserService {
     }
 
     public User create(User user) {
-        if (userRepository.existsUserByEmail(user.getEmail())) {
-            throw new EmailAlreadyExistException(EMAIL_ALREADY_EXISTING);
-        }
-        if (userRepository.existsUserByUsername(user.getUsername())) {
-            throw new UsernameAlreadyExist(USERNAME_ALREADY_EXISTING);
-        }
+        validateUsernameEmail(user);
         return userRepository.save(user);
     }
 
@@ -49,6 +44,7 @@ public class UserService {
     }
 
     public User update(Integer id, User user) {
+        validateUsernameEmail(user);
         User retrievedUser = retrieve(id);
         retrievedUser.setFirstName(user.getFirstName());
         retrievedUser.setLastName(user.getLastName());
@@ -80,6 +76,19 @@ public class UserService {
                 .stream()
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
+    }
+
+    private void validateUsernameEmail(User user){
+        UserCreationErrorResponse userCreationErrorResponse = new UserCreationErrorResponse();
+        if (userRepository.existsUserByEmail(user.getEmail())) {
+            userCreationErrorResponse.setEmailExist(true);
+        }
+        if (userRepository.existsUserByUsername(user.getUsername())) {
+            userCreationErrorResponse.setUsernameExist(true);
+        }
+        if(userCreationErrorResponse.isEmailExist() || userCreationErrorResponse.isUsernameExist()) {
+            throw new RegistrationException(userCreationErrorResponse);
+        }
     }
 
     public String getImgSrc(Integer id) {
