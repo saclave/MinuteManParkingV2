@@ -1,11 +1,15 @@
 package com.example.MinuteManParking.service;
 
 import com.example.MinuteManParking.dto.UserCreationErrorResponse;
+import com.example.MinuteManParking.exceptions.ParkingLotNotFound;
+import com.example.MinuteManParking.exceptions.ParkingSlotNotFound;
 import com.example.MinuteManParking.exceptions.RegistrationException;
 import com.example.MinuteManParking.exceptions.UserNotFound;
 import com.example.MinuteManParking.model.Car;
 import com.example.MinuteManParking.model.Ticket;
 import com.example.MinuteManParking.model.User;
+import com.example.MinuteManParking.repository.ParkingLotRepository;
+import com.example.MinuteManParking.repository.ParkingSlotRepository;
 import com.example.MinuteManParking.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,15 +17,22 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.example.MinuteManParking.exceptions.ExceptionConstants.*;
+import static com.example.MinuteManParking.exceptions.ExceptionConstants.PARKING_LOT_NOT_FOUND;
+import static com.example.MinuteManParking.exceptions.ExceptionConstants.PARKING_SLOT_NOT_FOUND;
+import static com.example.MinuteManParking.exceptions.ExceptionConstants.USER_NOT_FOUND;
+import static java.util.Objects.requireNonNull;
 
 
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final ParkingSlotRepository parkingSlotRepository;
+    private final ParkingLotRepository parkingLotRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, ParkingSlotRepository parkingSlotRepository, ParkingLotRepository parkingLotRepository) {
         this.userRepository = userRepository;
+        this.parkingSlotRepository = parkingSlotRepository;
+        this.parkingLotRepository = parkingLotRepository;
     }
 
     public User create(User user) {
@@ -32,7 +43,7 @@ public class UserService {
         if (userRepository.existsUserByUsername(user.getUsername())) {
             userCreationErrorResponse.setUsernameExist(true);
         }
-        if(userCreationErrorResponse.isEmailExist() || userCreationErrorResponse.isUsernameExist()) {
+        if (userCreationErrorResponse.isEmailExist() || userCreationErrorResponse.isUsernameExist()) {
             throw new RegistrationException(userCreationErrorResponse);
         }
         return userRepository.save(user);
@@ -60,7 +71,7 @@ public class UserService {
         if (userRepository.existsUserByUsername(user.getUsername()) && !retrieve(id).getUsername().equals(user.getUsername())) {
             userCreationErrorResponse.setUsernameExist(true);
         }
-        if(userCreationErrorResponse.isEmailExist() || userCreationErrorResponse.isUsernameExist()) {
+        if (userCreationErrorResponse.isEmailExist() || userCreationErrorResponse.isUsernameExist()) {
             throw new RegistrationException(userCreationErrorResponse);
         }
         User retrievedUser = retrieve(id);
@@ -83,7 +94,7 @@ public class UserService {
     public List<Car> getCarsByUserId(Integer id) {
         return userRepository.findById(id)
                 .map(User::getCarList)
-                .orElseThrow(()-> new UserNotFound(USER_NOT_FOUND));
+                .orElseThrow(() -> new UserNotFound(USER_NOT_FOUND));
     }
 
     public List<Ticket> getTicketsByUserId(Integer id) {
@@ -96,10 +107,18 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
+    public String getParkingLotName(Integer parkingSlotId) {
+        return parkingSlotRepository.findById(parkingSlotId).map(parkingSlot ->
+                parkingLotRepository.findById(requireNonNull(parkingSlot).getParkingLotId())
+                        .orElseThrow(() -> new ParkingLotNotFound(PARKING_LOT_NOT_FOUND))
+        ).orElseThrow(() -> new ParkingSlotNotFound(PARKING_SLOT_NOT_FOUND))
+                .getName();
+    }
+
     public String getImgSrc(Integer id) {
         User user = userRepository.findById(id).orElse(null);
 
-        if(user != null){
+        if (user != null) {
             return user.getImgSrc();
         }
         return null;
