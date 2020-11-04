@@ -9,6 +9,7 @@ public class UserRequest {
     private String username;
     private String password;
     private Double cash;
+    private String img;
 
     public UserRequest() {
 
@@ -77,4 +78,9 @@ public class UserRequest {
     public void setCash(Double cash) {
         this.cash = cash;
     }
+
+    public String getImgSrc() { return img; }
+
+    public void setImgSrc(String img) { this.img = img; }
+
 }
