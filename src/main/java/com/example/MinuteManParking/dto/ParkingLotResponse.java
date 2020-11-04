@@ -14,7 +14,7 @@ public class ParkingLotResponse {
     private Integer available;
     private Integer capacity;
     private List<ParkingSlot> parkingSlotList;
-    private String img;
+    private String img_src;
 
     public ParkingLotResponse() {
 
@@ -92,7 +92,7 @@ public class ParkingLotResponse {
         this.capacity = capacity;
     }
 
-    public String getImgSrc() { return img; }
+    public String getImgSrc() { return img_src; }
 
-    public void setImgSrc(String img) { this.img = img; }
+    public void setImgSrc(String img_src) { this.img_src = img_src; }
 }

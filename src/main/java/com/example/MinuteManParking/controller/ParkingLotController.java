@@ -34,7 +34,7 @@ public class ParkingLotController {
         return getResponseWithAvailableAndCapacity(parkingLot);
     }
 
-    @GetMapping("{/img/{id}")
+    @GetMapping("{/img_src/{id}")
     public String getParkingLotImgSrc(@PathVariable Integer id){
        return parkingLotService.getImgSrc(id);
     }

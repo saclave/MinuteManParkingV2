@@ -13,7 +13,7 @@ public class ParkingLot {
     private String address;
     private Double price;
     private String name;
-    private String img;
+    private String img_src;
 
     @OneToMany(
             fetch = FetchType.LAZY,
@@ -82,7 +82,7 @@ public class ParkingLot {
         this.name = name;
     }
 
-    public String getImgSrc() { return img; }
+    public String getImgSrc() { return img_src; }
 
-    public void setImgSrc(String img) { this.img = img; }
+    public void setImgSrc(String img_src) { this.img_src = img_src; }
 }

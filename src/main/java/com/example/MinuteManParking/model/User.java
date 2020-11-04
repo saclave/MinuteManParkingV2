@@ -16,7 +16,7 @@ public class User {
     private String username;
     private String password;
     private Double cash;
-    private String img;
+    private String img_src;
 
     @OneToMany(
             fetch = FetchType.LAZY,
@@ -109,8 +109,8 @@ public class User {
         this.carList = carList;
     }
 
-    public String getImgSrc() { return img; }
+    public String getImgSrc() { return img_src; }
 
-    public void setImgSrc(String img) { this.img = img; }
+    public void setImgSrc(String img_src) { this.img_src = img_src; }
 
 }
