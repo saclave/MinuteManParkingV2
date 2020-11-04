@@ -29,7 +29,7 @@ public class UserController {
         return todoItems.stream().map(USER_MAPPER::toResponse).collect(Collectors.toList());
     }
 
-    @GetMapping("{/img/{id}")
+    @GetMapping("{/img_src/{id}")
     public String getUserImgSrc(@PathVariable Integer id){
         return userService.getImgSrc(id);
     }

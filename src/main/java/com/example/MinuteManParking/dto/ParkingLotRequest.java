@@ -6,7 +6,7 @@ public class ParkingLotRequest {
     private String address;
     private Double price;
     private String name;
-    private String img;
+    private String img_src;
 
     public ParkingLotRequest() {
 
@@ -52,8 +52,8 @@ public class ParkingLotRequest {
         this.name = name;
     }
 
-    public String getImgSrc() { return img; }
+    public String getImgSrc() { return img_src; }
 
-    public void setImgSrc(String img_src) { this.img = img; }
+    public void setImgSrc(String img_src) { this.img_src = img_src; }
 
 }

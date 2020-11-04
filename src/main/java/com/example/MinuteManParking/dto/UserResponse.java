@@ -15,7 +15,7 @@ public class UserResponse {
     private String password;
     private Double cash;
     private List<Car> carList;
-    private String img;
+    private String img_src;
 
     public UserResponse() {
 
@@ -101,7 +101,7 @@ public class UserResponse {
         this.carList = carList;
     }
 
-    public String getImgSrc() { return img; }
+    public String getImgSrc() { return img_src; }
 
-    public void setImgSrc(String img) { this.img = img; }
+    public void setImgSrc(String img_src) { this.img_src = img_src; }
 }
