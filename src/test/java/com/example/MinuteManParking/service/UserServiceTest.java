@@ -1,27 +1,48 @@
 package com.example.MinuteManParking.service;
 
+import com.example.MinuteManParking.exceptions.ParkingLotNotFound;
+import com.example.MinuteManParking.exceptions.ParkingSlotNotFound;
+import com.example.MinuteManParking.model.ParkingLot;
+import com.example.MinuteManParking.model.ParkingSlot;
 import com.example.MinuteManParking.model.User;
+import com.example.MinuteManParking.repository.ParkingLotRepository;
+import com.example.MinuteManParking.repository.ParkingSlotRepository;
 import com.example.MinuteManParking.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class UserServiceTest {
     private UserRepository userRepository;
     private UserService userService;
+    private ParkingSlotRepository parkingSlotRepository;
+    private ParkingLotRepository parkingLotRepository;
+
+    private final int NONE = 0;
+    private final int ONCE = 1;
 
     @BeforeEach
     void setUp() {
         userRepository = mock(UserRepository.class);
-        userService = new UserService(userRepository);
+        parkingSlotRepository = mock(ParkingSlotRepository.class);
+        parkingLotRepository = mock(ParkingLotRepository.class);
+
+        userService = new UserService(userRepository,
+                parkingSlotRepository,
+                parkingLotRepository);
     }
 
     @Test
@@ -83,4 +104,61 @@ class UserServiceTest {
         assertSame(expected, updated);
     }
 
+    @Test
+    void should_return_parking_lot_name_when_get_parking_lot_name_given_parking_slot_id() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.setId(1);
+        parkingLot.setName("Parking Lot");
+
+        ParkingSlot parkingSlot = new ParkingSlot();
+        parkingSlot.setId(1);
+        parkingSlot.setParkingLotId(parkingLot.getId());
+
+        when(parkingSlotRepository.findById(parkingSlot.getId())).thenReturn(Optional.of(parkingSlot));
+        when(parkingLotRepository.findById(parkingLot.getId())).thenReturn(Optional.of(parkingLot));
+
+        //when
+        String parkingLotName = userService.getParkingLotName(parkingSlot.getParkingLotId());
+
+        //then
+        verify(parkingSlotRepository, times(ONCE)).findById(parkingSlot.getId());
+        verify(parkingLotRepository, times(ONCE)).findById(parkingLot.getId());
+        assertSame(parkingLot.getName(), parkingLotName);
+    }
+
+    @Test
+    void should_throw_parking_lot_not_found_when_get_parking_lot_name_given_parking_slot_id_with_missing_parking_lot() {
+        //given
+        ParkingSlot parkingSlot = new ParkingSlot();
+        parkingSlot.setId(1);
+        parkingSlot.setParkingLotId(1);
+
+        when(parkingSlotRepository.findById(parkingSlot.getId())).thenReturn(Optional.of(parkingSlot));
+        when(parkingLotRepository.findById(parkingSlot.getParkingLotId())).thenReturn(Optional.empty());
+
+        //when
+        Executable executable = () -> userService.getParkingLotName(parkingSlot.getParkingLotId());
+
+        //then
+        assertThrows(ParkingLotNotFound.class, executable);
+        verify(parkingSlotRepository, times(ONCE)).findById(parkingSlot.getId());
+        verify(parkingLotRepository, times(ONCE)).findById(parkingSlot.getParkingLotId());
+    }
+
+    @Test
+    void should_throw_parking_slot_not_found_when_get_parking_lot_name_given_missing_parking_slot_id() {
+        //given
+        Integer parkingSlotId = 1;
+
+        when(parkingSlotRepository.findById(parkingSlotId)).thenReturn(Optional.empty());
+
+        //when
+        Executable executable = () -> userService.getParkingLotName(parkingSlotId);
+
+        //then
+        assertThrows(ParkingSlotNotFound.class, executable);
+        verify(parkingSlotRepository, times(ONCE)).findById(parkingSlotId);
+        verify(parkingLotRepository, times(NONE)).findById(any(Integer.class));
+    }
 }

@@ -8,6 +8,7 @@ public class TicketResponse {
     private String timeOut;
     private String name;
     private Double amount;
+    private String parkingLotName;
 
     public TicketResponse() {
 
@@ -67,5 +68,13 @@ public class TicketResponse {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public String getParkingLotName() {
+        return parkingLotName;
+    }
+
+    public void setParkingLotName(String parkingLotName) {
+        this.parkingLotName = parkingLotName;
     }
 }
