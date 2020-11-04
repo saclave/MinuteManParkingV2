@@ -62,6 +62,7 @@ public class TicketServiceTest {
 
         ParkingSlot parkingSlot = new ParkingSlot();
         parkingSlot.setId(123);
+        parkingSlot.setName("B2");
         parkingSlot.setParkingLotId(123);
 
         Ticket ticket = new Ticket();
@@ -75,7 +76,7 @@ public class TicketServiceTest {
         Ticket actual = ticketService.create(ticket);
         //then
         assertEquals(actual, ticket);
-        assertEquals(actual.getName(), "MOA_123-69");
+        assertEquals(actual.getName(), "MOA_B2-69");
     }
 
     @Test
