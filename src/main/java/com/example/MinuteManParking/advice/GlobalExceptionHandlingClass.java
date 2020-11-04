@@ -16,8 +16,8 @@ public class GlobalExceptionHandlingClass {
     }
 
     @ExceptionHandler
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public UserCreationErrorResponse handleUsernameAlreadyExistingException(RegistrationException exception) {
+    @ResponseStatus(HttpStatus.OK)
+    public UserCreationErrorResponse handleAlreadyExistingException(RegistrationException exception) {
         return exception.getUserCreationErrorResponse();
     }
 
