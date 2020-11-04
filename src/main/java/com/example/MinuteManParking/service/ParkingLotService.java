@@ -43,6 +43,7 @@ public class ParkingLotService {
         retrievedParkingLot.setLongitude(parkingLot.getLongitude());
         retrievedParkingLot.setPrice(parkingLot.getPrice());
         retrievedParkingLot.setName(parkingLot.getName());
+        retrievedParkingLot.setImgSrc(parkingLot.getImgSrc());
         return parkingLotRepository.save(retrievedParkingLot);
     }
 
@@ -50,5 +51,14 @@ public class ParkingLotService {
         return parkingLotRepository.findById(id)
                 .map(ParkingLot::getParkingSlotList)
                 .orElseThrow(() -> new ParkingLotNotFound(PARKING_LOT_NOT_FOUND));
+    }
+
+    public String getImgSrc(Integer id) {
+        ParkingLot parkingLot = parkingLotRepository.findById(id).orElse(null);
+
+        if(parkingLot != null){
+            return parkingLot.getImgSrc();
+        }
+        return null;
     }
 }

@@ -29,6 +29,11 @@ public class UserController {
         return todoItems.stream().map(USER_MAPPER::toResponse).collect(Collectors.toList());
     }
 
+    @GetMapping("{/img/{id}")
+    public String getUserImgSrc(@PathVariable Integer id){
+        return userService.getImgSrc(id);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UserResponse add(@RequestBody UserRequest userRequest) {

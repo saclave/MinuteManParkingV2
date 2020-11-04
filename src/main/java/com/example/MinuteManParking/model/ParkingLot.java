@@ -13,6 +13,8 @@ public class ParkingLot {
     private String address;
     private Double price;
     private String name;
+    private String img;
+
     @OneToMany(
             fetch = FetchType.LAZY,
             orphanRemoval = true
@@ -79,4 +81,8 @@ public class ParkingLot {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getImgSrc() { return img; }
+
+    public void setImgSrc(String img) { this.img = img; }
 }

@@ -58,6 +58,7 @@ public class UserService {
         retrievedUser.setUsername(user.getUsername());
         retrievedUser.setPassword(user.getPassword());
         retrievedUser.setCash(user.getCash());
+        retrievedUser.setImgSrc(user.getImgSrc());
         return userRepository.save(retrievedUser);
     }
 
@@ -79,5 +80,14 @@ public class UserService {
                 .stream()
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
+    }
+
+    public String getImgSrc(Integer id) {
+        User user = userRepository.findById(id).orElse(null);
+
+        if(user != null){
+            return user.getImgSrc();
+        }
+        return null;
     }
 }
