@@ -82,4 +82,11 @@ public class ParkingLotServiceTest {
         //then
         assertSame(expected, updated);
     }
+
+    @Test
+    void should_return_list_by_name(){
+        when(parkingLotRepository.findByCity("Pasay")).thenReturn(asList(new ParkingLot(), new ParkingLot()));
+        List<ParkingLot> parkingLots = parkingLotService.getParkingLotsByCity("Pasay");
+        assertEquals(2, parkingLots.size());
+    }
 }

@@ -63,6 +63,11 @@ public class ParkingLotController {
         return parkingLotService.getParkingSlotsByParkingLot(id);
     }
 
+    @GetMapping("/{city}/suggested")
+    public List<ParkingLot> getListParkingByCity(@PathVariable String city){
+        return parkingLotService.getParkingLotsByCity(city);
+    }
+
     private ParkingLotResponse getResponseWithAvailableAndCapacity(ParkingLot parkingLot){
         ParkingLotResponse parkingLotResponse = PARKING_LOT_MAPPER.toResponse(parkingLot);
         if(parkingLot.getParkingSlotList() == null) {
