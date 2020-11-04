@@ -25,7 +25,16 @@ public class UserService {
     }
 
     public User create(User user) {
-        validateUsernameEmail(user);
+        UserCreationErrorResponse userCreationErrorResponse = new UserCreationErrorResponse();
+        if (userRepository.existsUserByEmail(user.getEmail())) {
+            userCreationErrorResponse.setEmailExist(true);
+        }
+        if (userRepository.existsUserByUsername(user.getUsername())) {
+            userCreationErrorResponse.setUsernameExist(true);
+        }
+        if(userCreationErrorResponse.isEmailExist() || userCreationErrorResponse.isUsernameExist()) {
+            throw new RegistrationException(userCreationErrorResponse);
+        }
         return userRepository.save(user);
     }
 
@@ -44,7 +53,16 @@ public class UserService {
     }
 
     public User update(Integer id, User user) {
-        validateUsernameEmail(user);
+        UserCreationErrorResponse userCreationErrorResponse = new UserCreationErrorResponse();
+        if (userRepository.existsUserByEmail(user.getEmail()) && !retrieve(id).getEmail().equals(user.getEmail())) {
+            userCreationErrorResponse.setEmailExist(true);
+        }
+        if (userRepository.existsUserByUsername(user.getUsername()) && !retrieve(id).getUsername().equals(user.getUsername())) {
+            userCreationErrorResponse.setUsernameExist(true);
+        }
+        if(userCreationErrorResponse.isEmailExist() || userCreationErrorResponse.isUsernameExist()) {
+            throw new RegistrationException(userCreationErrorResponse);
+        }
         User retrievedUser = retrieve(id);
         retrievedUser.setFirstName(user.getFirstName());
         retrievedUser.setLastName(user.getLastName());
@@ -76,19 +94,6 @@ public class UserService {
                 .stream()
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
-    }
-
-    private void validateUsernameEmail(User user){
-        UserCreationErrorResponse userCreationErrorResponse = new UserCreationErrorResponse();
-        if (userRepository.existsUserByEmail(user.getEmail())) {
-            userCreationErrorResponse.setEmailExist(true);
-        }
-        if (userRepository.existsUserByUsername(user.getUsername())) {
-            userCreationErrorResponse.setUsernameExist(true);
-        }
-        if(userCreationErrorResponse.isEmailExist() || userCreationErrorResponse.isUsernameExist()) {
-            throw new RegistrationException(userCreationErrorResponse);
-        }
     }
 
     public String getImgSrc(Integer id) {
