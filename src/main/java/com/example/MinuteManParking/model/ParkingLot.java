@@ -13,6 +13,7 @@ public class ParkingLot {
     private String address;
     private Double price;
     private String name;
+    private String city;
     private String img_src;
 
     @OneToMany(
@@ -83,6 +84,12 @@ public class ParkingLot {
     }
 
     public String getImgSrc() { return img_src; }
+
+    public String getCity() { return city; }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 
     public void setImgSrc(String img_src) { this.img_src = img_src; }
 }

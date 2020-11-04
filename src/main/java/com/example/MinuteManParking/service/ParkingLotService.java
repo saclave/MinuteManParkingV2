@@ -61,4 +61,8 @@ public class ParkingLotService {
         }
         return null;
     }
+
+    public List<ParkingLot> getParkingLotsByCity(String city) {
+        return parkingLotRepository.findByCity(city);
+    }
 }
