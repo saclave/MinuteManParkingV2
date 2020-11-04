@@ -16,6 +16,7 @@ public class User {
     private String username;
     private String password;
     private Double cash;
+    private String img;
 
     @OneToMany(
             fetch = FetchType.LAZY,
@@ -107,4 +108,9 @@ public class User {
     public void setCarList(List<Car> carList) {
         this.carList = carList;
     }
+
+    public String getImgSrc() { return img; }
+
+    public void setImgSrc(String img) { this.img = img; }
+
 }
