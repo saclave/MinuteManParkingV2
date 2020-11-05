@@ -10,8 +10,6 @@ public class User {
     private Integer id;
     private String firstName;
     private String lastName;
-    private String birthdate;
-    private String gender;
     private String email;
     private String username;
     private String password;
@@ -51,22 +49,6 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(String birthdate) {
-        this.birthdate = birthdate;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public String getEmail() {

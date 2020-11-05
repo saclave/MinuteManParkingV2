@@ -77,9 +77,7 @@ public class UserService {
         User retrievedUser = retrieve(id);
         retrievedUser.setFirstName(user.getFirstName());
         retrievedUser.setLastName(user.getLastName());
-        retrievedUser.setBirthdate(user.getBirthdate());
         retrievedUser.setEmail(user.getEmail());
-        retrievedUser.setGender(user.getGender());
         retrievedUser.setUsername(user.getUsername());
         retrievedUser.setPassword(user.getPassword());
         retrievedUser.setCash(user.getCash());
