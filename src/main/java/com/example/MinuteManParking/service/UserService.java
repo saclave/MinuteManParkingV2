@@ -46,6 +46,7 @@ public class UserService {
         if (userCreationErrorResponse.isEmailExist() || userCreationErrorResponse.isUsernameExist()) {
             throw new RegistrationException(userCreationErrorResponse);
         }
+        user.setImage("https://secureservercdn.net/160.153.138.163/752.d1a.myftpupload.com/wp-content/uploads/2017/02/blank-profile-picture-973460_1280.png");
         return userRepository.save(user);
     }
 
