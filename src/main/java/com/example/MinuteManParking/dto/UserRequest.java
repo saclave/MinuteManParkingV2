@@ -7,7 +7,7 @@ public class UserRequest {
     private String username;
     private String password;
     private Double cash;
-    private String img_src;
+    private String image;
 
     public UserRequest() {
 
@@ -61,8 +61,11 @@ public class UserRequest {
         this.cash = cash;
     }
 
-    public String getImgSrc() { return img_src; }
+    public String getImage() {
+        return image;
+    }
 
-    public void setImgSrc(String img_src) { this.img_src = img_src; }
-
+    public void setImage(String image) {
+        this.image = image;
+    }
 }

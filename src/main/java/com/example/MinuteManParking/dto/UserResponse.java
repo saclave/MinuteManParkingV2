@@ -13,7 +13,7 @@ public class UserResponse {
     private String password;
     private Double cash;
     private List<Car> carList;
-    private String img_src;
+    private String image;
 
     public UserResponse() {
 
@@ -83,7 +83,11 @@ public class UserResponse {
         this.carList = carList;
     }
 
-    public String getImgSrc() { return img_src; }
+    public String getImage() {
+        return image;
+    }
 
-    public void setImgSrc(String img_src) { this.img_src = img_src; }
+    public void setImage(String image) {
+        this.image = image;
+    }
 }

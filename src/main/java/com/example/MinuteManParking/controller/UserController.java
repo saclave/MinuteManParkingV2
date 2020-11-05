@@ -48,7 +48,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     public UserResponse add(@RequestBody UserRequest userRequest) {
         User user = userService.create(USER_MAPPER.toEntity(userRequest));
-        user.setImgSrc("https://secureservercdn.net/160.153.138.163/752.d1a.myftpupload.com/wp-content/uploads/2017/02/blank-profile-picture-973460_1280.png");
+        user.setImage("https://secureservercdn.net/160.153.138.163/752.d1a.myftpupload.com/wp-content/uploads/2017/02/blank-profile-picture-973460_1280.png");
         return USER_MAPPER.toResponse(user);
     }
 

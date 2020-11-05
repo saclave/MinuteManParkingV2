@@ -81,7 +81,7 @@ public class UserService {
         retrievedUser.setUsername(user.getUsername());
         retrievedUser.setPassword(user.getPassword());
         retrievedUser.setCash(user.getCash());
-        retrievedUser.setImgSrc(user.getImgSrc());
+        retrievedUser.setImage(user.getImage());
         return userRepository.save(retrievedUser);
     }
 
@@ -117,7 +117,7 @@ public class UserService {
         User user = userRepository.findById(id).orElse(null);
 
         if (user != null) {
-            return user.getImgSrc();
+            return user.getImage();
         }
         return null;
     }
