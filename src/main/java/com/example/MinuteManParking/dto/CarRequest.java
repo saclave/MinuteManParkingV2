@@ -1,9 +1,5 @@
 package com.example.MinuteManParking.dto;
 
-import com.example.MinuteManParking.model.Car;
-
-import java.util.List;
-
 public class CarRequest {
     private Integer userId;
     private String plateNumber;

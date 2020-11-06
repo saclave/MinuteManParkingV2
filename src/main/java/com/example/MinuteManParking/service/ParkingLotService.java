@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.example.MinuteManParking.exceptions.ExceptionConstants.*;
+import static com.example.MinuteManParking.exceptions.ExceptionConstants.PARKING_LOT_NOT_FOUND;
 
 @Service
 public class ParkingLotService {

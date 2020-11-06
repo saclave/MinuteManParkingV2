@@ -10,13 +10,11 @@ public class User {
     private Integer id;
     private String firstName;
     private String lastName;
-    private String birthdate;
-    private String gender;
     private String email;
     private String username;
     private String password;
     private Double cash;
-    private String img_src;
+    private String image;
 
     @OneToMany(
             fetch = FetchType.LAZY,
@@ -51,22 +49,6 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(String birthdate) {
-        this.birthdate = birthdate;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public String getEmail() {
@@ -109,8 +91,11 @@ public class User {
         this.carList = carList;
     }
 
-    public String getImgSrc() { return img_src; }
+    public String getImage() {
+        return image;
+    }
 
-    public void setImgSrc(String img_src) { this.img_src = img_src; }
-
+    public void setImage(String image) {
+        this.image = image;
+    }
 }

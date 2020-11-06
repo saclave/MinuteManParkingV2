@@ -11,6 +11,7 @@ public class Hazard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String type;
+    private String name;
     private String address;
     private Double longitude;
     private Double latitude;
@@ -57,5 +58,13 @@ public class Hazard {
 
     public void setLatitude(Double latitude) {
         this.latitude = latitude;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -5,6 +5,7 @@ public class HazardRequest {
     private String address;
     private Double longitude;
     private Double latitude;
+    private String name;
 
     public HazardRequest() {
     }
@@ -39,5 +40,13 @@ public class HazardRequest {
 
     public void setLatitude(Double latitude) {
         this.latitude = latitude;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

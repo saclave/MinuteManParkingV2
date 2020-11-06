@@ -6,6 +6,7 @@ public class HazardResponse {
     private String address;
     private Double longitude;
     private Double latitude;
+    private String name;
 
     public HazardResponse() {
     }
@@ -48,5 +49,13 @@ public class HazardResponse {
 
     public void setLatitude(Double latitude) {
         this.latitude = latitude;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

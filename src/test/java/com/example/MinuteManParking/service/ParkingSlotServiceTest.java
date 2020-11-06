@@ -1,13 +1,10 @@
 package com.example.MinuteManParking.service;
 
 import com.example.MinuteManParking.model.ParkingSlot;
-import com.example.MinuteManParking.model.User;
 import com.example.MinuteManParking.repository.ParkingSlotRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +12,6 @@ import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.times;
 
 public class ParkingSlotServiceTest {
     private ParkingSlotRepository parkingSlotRepository;

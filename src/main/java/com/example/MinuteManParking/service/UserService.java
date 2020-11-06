@@ -17,9 +17,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.example.MinuteManParking.exceptions.ExceptionConstants.PARKING_LOT_NOT_FOUND;
-import static com.example.MinuteManParking.exceptions.ExceptionConstants.PARKING_SLOT_NOT_FOUND;
-import static com.example.MinuteManParking.exceptions.ExceptionConstants.USER_NOT_FOUND;
+import static com.example.MinuteManParking.exceptions.ExceptionConstants.*;
 import static java.util.Objects.requireNonNull;
 
 
@@ -46,6 +44,7 @@ public class UserService {
         if (userCreationErrorResponse.isEmailExist() || userCreationErrorResponse.isUsernameExist()) {
             throw new RegistrationException(userCreationErrorResponse);
         }
+        user.setImage("https://secureservercdn.net/160.153.138.163/752.d1a.myftpupload.com/wp-content/uploads/2017/02/blank-profile-picture-973460_1280.png");
         return userRepository.save(user);
     }
 
@@ -77,13 +76,11 @@ public class UserService {
         User retrievedUser = retrieve(id);
         retrievedUser.setFirstName(user.getFirstName());
         retrievedUser.setLastName(user.getLastName());
-        retrievedUser.setBirthdate(user.getBirthdate());
         retrievedUser.setEmail(user.getEmail());
-        retrievedUser.setGender(user.getGender());
         retrievedUser.setUsername(user.getUsername());
         retrievedUser.setPassword(user.getPassword());
         retrievedUser.setCash(user.getCash());
-        retrievedUser.setImgSrc(user.getImgSrc());
+        retrievedUser.setImage(user.getImage());
         return userRepository.save(retrievedUser);
     }
 
@@ -119,7 +116,7 @@ public class UserService {
         User user = userRepository.findById(id).orElse(null);
 
         if (user != null) {
-            return user.getImgSrc();
+            return user.getImage();
         }
         return null;
     }

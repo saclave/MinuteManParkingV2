@@ -42,6 +42,7 @@ public class HazardService {
         retrievedHazard.setAddress(hazard.getAddress());
         retrievedHazard.setLatitude(hazard.getLatitude());
         retrievedHazard.setType(hazard.getType().toUpperCase());
+        retrievedHazard.setName(hazard.getName());
         return hazardRepository.save(retrievedHazard);
     }
 
