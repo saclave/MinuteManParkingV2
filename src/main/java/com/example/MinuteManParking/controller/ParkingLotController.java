@@ -6,7 +6,15 @@ import com.example.MinuteManParking.model.ParkingLot;
 import com.example.MinuteManParking.model.ParkingSlot;
 import com.example.MinuteManParking.service.ParkingLotService;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,8 +43,8 @@ public class ParkingLotController {
     }
 
     @GetMapping("{/img_src/{id}")
-    public String getParkingLotImgSrc(@PathVariable Integer id){
-       return parkingLotService.getImgSrc(id);
+    public String getParkingLotImgSrc(@PathVariable Integer id) {
+        return parkingLotService.getImgSrc(id);
     }
 
     @PostMapping
@@ -64,13 +72,13 @@ public class ParkingLotController {
     }
 
     @GetMapping("/{city}/suggested")
-    public List<ParkingLot> getListParkingByCity(@PathVariable String city){
+    public List<ParkingLot> getListParkingByCity(@PathVariable String city) {
         return parkingLotService.getParkingLotsByCity(city);
     }
 
-    private ParkingLotResponse getResponseWithAvailableAndCapacity(ParkingLot parkingLot){
+    private ParkingLotResponse getResponseWithAvailableAndCapacity(ParkingLot parkingLot) {
         ParkingLotResponse parkingLotResponse = PARKING_LOT_MAPPER.toResponse(parkingLot);
-        if(parkingLot.getParkingSlotList() == null) {
+        if (parkingLot.getParkingSlotList() == null) {
             parkingLotResponse.setCapacity(0);
             parkingLotResponse.setAvailable(0);
         } else {

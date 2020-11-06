@@ -17,7 +17,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.example.MinuteManParking.exceptions.ExceptionConstants.*;
+import static com.example.MinuteManParking.exceptions.ExceptionConstants.PARKING_LOT_NOT_FOUND;
+import static com.example.MinuteManParking.exceptions.ExceptionConstants.PARKING_SLOT_NOT_FOUND;
+import static com.example.MinuteManParking.exceptions.ExceptionConstants.USER_NOT_FOUND;
 import static java.util.Objects.requireNonNull;
 
 

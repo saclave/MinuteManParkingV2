@@ -54,13 +54,21 @@ public class ParkingLotRequest {
         this.name = name;
     }
 
-    public String getImgSrc() { return img_src; }
+    public String getImgSrc() {
+        return img_src;
+    }
 
-    public void setImgSrc(String img_src) { this.img_src = img_src; }
+    public void setImgSrc(String img_src) {
+        this.img_src = img_src;
+    }
 
 
-    public String getCity() { return city; }
+    public String getCity() {
+        return city;
+    }
 
-    public void setCity(String city) { this.city = city; }
+    public void setCity(String city) {
+        this.city = city;
+    }
 
 }

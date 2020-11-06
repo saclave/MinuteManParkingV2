@@ -1,7 +1,13 @@
 package com.example.MinuteManParking.advice;
 
 import com.example.MinuteManParking.dto.UserCreationErrorResponse;
-import com.example.MinuteManParking.exceptions.*;
+import com.example.MinuteManParking.exceptions.CarNotFoundException;
+import com.example.MinuteManParking.exceptions.HazardNotFound;
+import com.example.MinuteManParking.exceptions.ParkingLotNotFound;
+import com.example.MinuteManParking.exceptions.ParkingSlotNotFound;
+import com.example.MinuteManParking.exceptions.RegistrationException;
+import com.example.MinuteManParking.exceptions.TicketNotFound;
+import com.example.MinuteManParking.exceptions.UserNotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;

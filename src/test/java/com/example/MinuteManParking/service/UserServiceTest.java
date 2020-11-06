@@ -16,17 +16,22 @@ import java.util.List;
 import java.util.Optional;
 
 import static java.util.Arrays.asList;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class UserServiceTest {
+    private final int NONE = 0;
+    private final int ONCE = 1;
     private UserRepository userRepository;
     private UserService userService;
     private ParkingSlotRepository parkingSlotRepository;
     private ParkingLotRepository parkingLotRepository;
-
-    private final int NONE = 0;
-    private final int ONCE = 1;
 
     @BeforeEach
     void setUp() {

@@ -46,6 +46,6 @@ public class CarService {
     public List<Ticket> getTicketByCar(Integer id) {
         return carRepository.findById(id)
                 .map(Car::getTicketList)
-                .orElseThrow(()-> new CarNotFoundException(CAR_NOT_FOUND));
+                .orElseThrow(() -> new CarNotFoundException(CAR_NOT_FOUND));
     }
 }

@@ -11,14 +11,17 @@ import java.util.Optional;
 import static java.util.Arrays.asList;
 import static org.junit.Assert.assertSame;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class CarServiceTest {
     private CarRepository carRepository;
     private CarService carService;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         carRepository = mock(CarRepository.class);
         carService = new CarService(carRepository);
     }
@@ -64,7 +67,7 @@ public class CarServiceTest {
     }
 
     @Test
-    void should_remove_cars_when_delete_given_id(){
+    void should_remove_cars_when_delete_given_id() {
         //given
         Car car = new Car();
         car.setId(69);
