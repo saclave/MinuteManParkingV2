@@ -11,7 +11,10 @@ import java.util.Optional;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class ParkingLotServiceTest {
     private ParkingLotRepository parkingLotRepository;
@@ -83,7 +86,7 @@ public class ParkingLotServiceTest {
     }
 
     @Test
-    void should_return_list_by_name(){
+    void should_return_list_by_name() {
         when(parkingLotRepository.findByCity("Pasay")).thenReturn(asList(new ParkingLot(), new ParkingLot()));
         List<ParkingLot> parkingLots = parkingLotService.getParkingLotsByCity("Pasay");
         assertEquals(2, parkingLots.size());

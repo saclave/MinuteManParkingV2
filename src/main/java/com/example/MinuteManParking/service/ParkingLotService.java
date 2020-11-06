@@ -56,7 +56,7 @@ public class ParkingLotService {
     public String getImgSrc(Integer id) {
         ParkingLot parkingLot = parkingLotRepository.findById(id).orElse(null);
 
-        if(parkingLot != null){
+        if (parkingLot != null) {
             return parkingLot.getImgSrc();
         }
         return null;

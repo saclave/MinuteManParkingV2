@@ -12,7 +12,8 @@ public class CarResponse {
     private String brand;
     private List<Ticket> ticketList;
 
-    public CarResponse() { }
+    public CarResponse() {
+    }
 
     public Integer getId() {
         return id;
