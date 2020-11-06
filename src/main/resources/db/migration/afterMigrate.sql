@@ -4,6 +4,8 @@ delete from parking_slot;
 delete from ticket;
 delete from user;
 
+insert into user(ID,CASH,EMAIL,FIRST_NAME,LAST_NAME,PASSWORD,USERNAME, IMAGE) values (1,200,'dennis@email.com','Dennis','Daluz', 'dda', 'dennisdaluz', 'https://secureservercdn.net/160.153.138.163/752.d1a.myftpupload.com/wp-content/uploads/2017/02/blank-profile-picture-973460_1280.png');
+
 insert into parking_lot(ID,LONGITUDE,LATITUDE,NAME,ADDRESS, CITY, PRICE, IMG_SRC) values (1,120.9862,14.5352,'Parkwise','Sunrise Drive Cor Edsa Extension Moa Complex, Pasay, 1300 Metro Manila', 'Pasay', 100, 'https://images.summitmedia-digital.com/topgear/images/2019/08/23/parking-lot-parking-area-1566554056.jpg');
 insert into parking_lot(ID,LONGITUDE,LATITUDE,NAME,ADDRESS, CITY, PRICE, IMG_SRC) values (2,120.9843,14.5323,'Mall of Asia Arena','Mall of Asia Complex, J.W. Diokno Blvd, Pasay, 1300 Metro Manila', 'Pasay', 110, 'https://sportsmatik.com/uploads/wiki-venues/Mall-of-Asia-Arena_1494308140_87564.jpg');
 insert into parking_lot(ID,LONGITUDE,LATITUDE,NAME,ADDRESS, CITY, PRICE, IMG_SRC) values (3,120.9828,14.5373,'SM Mall of Asia North Parking', 'Sunset Ave, Pasay, Metro Manila', 'Pasay', 120, 'https://images.summitmedia-digital.com/sap/images/2019/10/25/batch--1190047-1571983229.jpg');
