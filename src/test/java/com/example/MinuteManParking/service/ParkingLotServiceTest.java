@@ -12,7 +12,6 @@ import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.times;
 
 public class ParkingLotServiceTest {
     private ParkingLotRepository parkingLotRepository;
