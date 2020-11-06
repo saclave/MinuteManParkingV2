@@ -43,11 +43,11 @@ public class TicketService {
                 .orElse(null);
         ParkingLot parkingLot = parkingLotRepository.findById(Objects.requireNonNull(parkingSlot).getParkingLotId())
                 .orElse(null);
-
-        ticket.setName(generateTicketString(Objects.requireNonNull(parkingLot).getName()) + "_"
-                + parkingSlot.getName() + "-" + ticket.getId());
-
-        return ticketRepository.save(ticket);
+        ticket.setName("initial");
+        Ticket forName = ticketRepository.save(ticket);
+        forName.setName(generateTicketString(Objects.requireNonNull(parkingLot).getName()) + "_"
+                + parkingSlot.getName() + "-" + forName.getId());
+        return ticketRepository.save(forName);
     }
 
     private String generateTicketString(String str) {
